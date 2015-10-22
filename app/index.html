@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mokepon</title>
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+
+  <h1>Mokepon</h1>
+  <div class="main" id="gameboard">
+
+  	<div class="enemy-health">
+  		<div class="name-and-level">
+  			<h4 class="poke-name" id="enemy-name">Pokemon</h4>
+  			<p class="poke-level" id="enemy-level">Lv##</p>
+  		</div>
+  		<div id="enemy-bar"></div>
+  		<p class="health-text">100/100</p>
+  	</div>
+
+  	<div class="sprites-area">
+  		<div id="player-toon"></div>
+  		<div id="enemy-toon"></div>
+  	</div>
+
+  	<div class="player-health">
+  		<div class="name-and-level">
+  			<h4 class="poke-name" id="player-name">Pokemon</h4>
+  			<p class="poke-level" id="player-level">Lv##</p>
+  		</div>
+  		<div id="player-bar"></div>
+  		<p class="health-text">100/100</p>
+  	</div>
+
+  	<div class="combat-log">
+  		<p class="combat-text">You do dmg here!</p>
+  	</div>
+
+  	<div class="skill-list">
+  		<ul>
+  			<li><button class="skill-btn">Move1</button><button class="skill-btn">Move2</button></li>
+  			<li><button class="skill-btn">Move3</button><button class="skill-btn">Move4</button></li>
+  		</ul>
+  	</div>
+
+  	<div class="settings">
+  		<button class="settings-btn">New Game</button>
+  		<button class="settings-btn">Quit</button>  		
+  	</div>
+  	
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
