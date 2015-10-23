@@ -110,7 +110,7 @@ gulp.task('watch', function() {
   gulp.watch('./sass/*.scss', ['sass']);
   gulp.watch(['./js/*.js', './package.json'], ['browserify', 'browserify-test']);
   gulp.watch('./app/index.html', ['hint:html']);
-  gulp.watch('./js/**/*.js', ['hint:js', ['style:js']]);
+  // gulp.watch('./js/**/*.js', ['hint:js', ['style:js']]);
 });
 
 gulp.task('server', ['default'], function () {

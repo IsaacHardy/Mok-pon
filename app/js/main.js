@@ -1,4 +1,20 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+var Enemy = function Enemy() {
+	this.health = 1000;
+	this.hit = function (num) {
+		var hitPoints = num;
+		return this.health = this.health - hitPoints;
+	};
+};
+exports["default"] = Enemy;
+module.exports = exports["default"];
+
+},{}],2:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -15,7 +31,110 @@ var _moment = require('moment');
 
 var _moment2 = _interopRequireDefault(_moment);
 
-},{"jquery":2,"moment":3,"underscore":4}],2:[function(require,module,exports){
+var _player = require('./player');
+
+var _player2 = _interopRequireDefault(_player);
+
+var _enemy = require('./enemy');
+
+var _enemy2 = _interopRequireDefault(_enemy);
+
+// Player Instances
+var charizardPlayer = new _player2['default']();
+// let bulbasaurPlayer = new Player();
+// let venosaurPlayer = new Player();
+
+// Enemy Instances
+var charizardEnemy = new _enemy2['default']();
+// let bulbasaurEnemy = new Enemy();
+// let venosaurEnemy = new Enemy();
+
+// Jquery node variables
+var playerHealth = (0, _jquery2['default'])('#player-health');
+var enemyHealth = (0, _jquery2['default'])('#enemy-health');
+var move1 = (0, _jquery2['default'])('#move1');
+var move2 = (0, _jquery2['default'])('#move2');
+var move3 = (0, _jquery2['default'])('#move3');
+var move4 = (0, _jquery2['default'])('#move4');
+var combatText = (0, _jquery2['default'])('.combat-text');
+
+// Set player and Enemy health to 1000
+playerHealth.text(charizardPlayer.health);
+enemyHealth.text(charizardEnemy.health);
+
+// Click Move1 Function to hit enemy and display results
+move1.on('click', function () {
+
+  // Generate random number to hit enemy health
+  var num = _underscore2['default'].random(0, 25);
+  charizardEnemy.hit(num);
+  enemyHealth.text(charizardEnemy.health);
+
+  // Display health change and damage amount in combat text
+  var eventText = charizardEnemy.health;
+  (0, _jquery2['default'])(combatText).empty();
+  (0, _jquery2['default'])(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
+});
+
+// Click Move2 Function to hit enemy and display results
+move2.on('click', function () {
+
+  // Generate random number to hit enemy health
+  var num = _underscore2['default'].random(0, 100);
+  charizardEnemy.hit(num);
+  enemyHealth.text(charizardEnemy.health);
+
+  // Display health change and damage amount in combat text
+  var eventText = charizardEnemy.health;
+  (0, _jquery2['default'])(combatText).empty();
+  (0, _jquery2['default'])(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
+});
+
+// Click Move3 Function to hit enemy and display results
+move3.on('click', function () {
+
+  // Generate random number to hit enemy health
+  var num = _underscore2['default'].random(0, 200);
+  charizardEnemy.hit(num);
+  enemyHealth.text(charizardEnemy.health);
+
+  // Display health change and damage amount in combat text
+  var eventText = charizardEnemy.health;
+  (0, _jquery2['default'])(combatText).empty();
+  (0, _jquery2['default'])(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
+});
+
+// Click Move4 Function to hit enemy and display results
+move4.on('click', function () {
+
+  // Generate random number to hit enemy health
+  var num = _underscore2['default'].random(0, 500);
+  charizardEnemy.hit(num);
+  enemyHealth.text(charizardEnemy.health);
+
+  // Display health change and damage amount in combat text
+  var eventText = charizardEnemy.health;
+  (0, _jquery2['default'])(combatText).empty();
+  (0, _jquery2['default'])(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
+});
+
+},{"./enemy":1,"./player":3,"jquery":4,"moment":5,"underscore":6}],3:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+var Player = function Player() {
+	this.health = 1000;
+	this.hit = function (num) {
+		var hitPoints = num;
+		return this.health = this.health - hitPoints;
+	};
+};
+exports["default"] = Player;
+module.exports = exports["default"];
+
+},{}],4:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -9227,7 +9346,7 @@ return jQuery;
 
 }));
 
-},{}],3:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 //! moment.js
 //! version : 2.10.6
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
@@ -12423,7 +12542,7 @@ return jQuery;
     return _moment;
 
 }));
-},{}],4:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -13973,7 +14092,7 @@ return jQuery;
   }
 }.call(this));
 
-},{}]},{},[1])
+},{}]},{},[2])
 
 
 //# sourceMappingURL=main.js.map

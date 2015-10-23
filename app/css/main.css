@@ -2043,6 +2043,11 @@ div {
 #gameboard {
   position: relative; }
 
+.sprites-area {
+  background-image: url(../Images/pokemon_x_y_battle_scene_by_jenske05-d5ynr9c.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%; }
+
 #enemy-bar, #player-bar {
   width: 55%;
   height: 30px;
@@ -2052,7 +2057,10 @@ div {
   width: 40%;
   float: right;
   margin-top: -120px;
-  margin-right: 30px; }
+  margin-right: 30px;
+  color: white;
+  background-color: black;
+  border-radius: 50px 5px 50px 5px; }
   .player-health .mokepon-name {
     margin: 0 auto; }
 
@@ -2060,16 +2068,21 @@ div {
   width: 40%;
   float: left;
   margin-top: 25px;
-  margin-left: 30px; }
+  margin-left: 30px;
+  color: white;
+  background-color: black;
+  border-radius: 50px 5px 50px 5px; }
   .enemy-health .mokepon-name {
     margin: 0 auto; }
 
 .poke-name {
-  display: inline-block; }
+  display: inline-block;
+  margin-left: 10%; }
 
 .poke-level {
   display: inline-block;
-  float: right; }
+  float: right;
+  margin-right: 5%; }
 
 .sprites-area {
   width: 100%;
@@ -2089,11 +2102,13 @@ div {
   margin-right: 40px; }
 
 .combat-log {
-  height: 100px; }
+  height: 100px;
+  background-color: white; }
 
 .health-text {
   margin: 0;
-  float: right; }
+  float: right;
+  margin-right: 10%; }
 
 .skill-list {
   width: 40%;
