@@ -1,9 +1,9 @@
 @import "bourbon";
 @import "font-awesome";
 
-body {
-  background: tomato;
-}
+// body {
+//   background: black;
+// }
 
 button {
 	width: 125px;
@@ -17,19 +17,91 @@ ul {
 
 li {
 	list-style: none;
+  margin-top: 50px;
 }
 
 div {
-	border: 1px solid;
 	font-size: 16px;
 }
 
+.container {
+ 	height: 967px;
+  margin-top: -57px;
+}
+
+.ds {
+  background-image: url(../Images/ds.jpg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 100%;
+  position: relative;
+  margin-left: 0px;
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  border: none;
+}
+
+.select-page {
+  width: 47%;
+  margin-top: 152px;
+  margin-left: 378px;
+}
+
+.start-game {
+
+}
+
+.mokepon-select {
+	width: 20%;
+	height: 175px;
+	display: inline-block;
+}
+
+#char-pon {
+	background-image: url(../Images/charizardgif.gif);
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+#veno-pon {
+	background-image: url(../Images/venosaurgif.gif);
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+#blast-pon {
+	background-image: url(../Images/blastiosegif.gif);
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
 .main {
-	width: 80%;
+	width: 50%;
+	display: none;
+}
+
+.bottom {
+	display: none;
+	text-align: center;
+  margin-top: 102px;
+	margin-left: 448px;
+  width: 526px;
+  border: none;
+  background-image: url(../Images/handpoke.jpg);
+	background-size: 100%;
+	background-repeat: no-repeat;
+
+  div {
+  	border: none;
+  }
 }
 
 #gameboard {
-	position: relative;
+  position: relative;
+  margin-top: -83px;
+  margin-left: 377px;
+  width: 670px;
 
 }
 
@@ -37,21 +109,27 @@ div {
 	background-image: url(../Images/pokemon_x_y_battle_scene_by_jenske05-d5ynr9c.png);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
+	width: 100%;
+	height: 274px;
 }
 #enemy-bar, #player-bar {
-	width: 55%;
-	height: 30px;
-  margin-left: 35%;
+  width: 20%;
+  position: absolute;
+  height: 10px;
+  margin-left: 12%;
+  margin-top: -16px;
+  background-color: green;
 }
-
 .player-health {
   width: 40%;
+  height: 60px;
   float: right;
-  margin-top: -120px;
+  margin-top: -88px;
   margin-right: 30px;
-  color: white;
-  background-color: black;
+  color: black;
+  background-color: beige;
 	border-radius: 50px 5px 50px 5px;
+
 
 	.mokepon-name {
   margin: 0 auto;
@@ -59,11 +137,12 @@ div {
 }
 .enemy-health {
 	width: 40%;
+	height: 60px;
 	float: left;
   margin-top: 25px;
   margin-left: 30px;
-	color: white;
-  background-color: black;
+	color: black;
+  background-color: beige;
   border-radius: 50px 5px 50px 5px;
 
 	.mokepon-name {
@@ -71,64 +150,109 @@ div {
 	}
 }
 
+.name-and-level {
+	border: none;
+}
+
 .poke-name {
 	display: inline-block;
-	margin-left: 10%;
+	margin-left: 13%;
+  margin-top: 4px;
 }
 .poke-level {
 	display: inline-block;
 	float: right;
-  margin-right: 5%;
-}
+  margin-right: 8%;
+  margin-top: 6px;
 
-
-.sprites-area {
-	width: 100%;
-	height: 450px
 }
 
 #player-toon {
   width: 40%;
-  height: 300px;
+  height: 205px;
   margin-top: 148px;
   margin-left: 40px;
 }
 #enemy-toon {
   width: 40%;
-  height: 300px;
+  height: 205px;
   float: right;
-  margin-top: -450px;
+  margin-top: -340px;
   margin-right: 40px;
 }
 
 .combat-log {
-	height: 100px;
+	height: 42px;
   background-color: white;
+  border: none;
+  margin-top: -14px;
+  margin-left: 1px;
+}
+
+.combat-text {
+	// margin-top: 0;
+ 	font-size: 18px;
+
 }
 .health-text {
   margin: 0;
   float: right;
-  margin-right: 10%;
+  margin-right: 20%;
 
 }
-.skill-list {
-	width: 40%;
-	text-align: center;
-  margin-left: 30%;
+
+.skill-btn {
+  width: 200px;
+  height: 100px;
+}
+
+#new-game, #quit-game {
+  width: 140px;
+  height: 55px;
+}
+
+#new-game {
+  height: 28px;
+  margin-top: 16px;
+  margin-left: -88px;
+  position: absolute;
+  width: 180px;
+  background-color: transparent;
+  border: none;
+}
+
+#quit-game {
+  position: absolute;
+  margin-top: -15px;
+  margin-left: 320px;
+  width: 35px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
 }
 
 .settings {
-	float: right;
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	width: 10%;
-	height: 0;
-	border-style: solid;
-	border-width: 0 0 142px 200px;
-	border-color: transparent transparent black transparent;
-
-	.settings-btn {
-		width: 90px;
-	}
+  margin-top: 22px;
 }
+// .skill-list {
+// 	width: 40%;
+// 	text-align: center;
+//   margin-left: 30%;
+// }
+
+// .settings {
+// 	float: right;
+// 	position: absolute;
+// 	right: 0;
+// 	bottom: 0;
+// 	width: 10%;
+// 	height: 0;
+// 	border-style: solid;
+// 	border-width: 0 0 142px 200px;
+// 	border-color: transparent transparent black transparent;
+
+// 	.settings-btn {
+// 		width: 90px;
+// 	}
+// }

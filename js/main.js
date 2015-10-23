@@ -4,6 +4,34 @@ import moment from 'moment';
 import Player from './player';
 import Enemy from './enemy';
 
+
+$('.start-game').on('click', function() {
+	$('.select-page').fadeOut(500, function () {
+		$('.main').fadeIn(1000, function () {
+			$('.bottom').fadeIn(750);
+		});
+	});
+	
+});
+
+$('#new-game').on('click', function() {
+	$('.bottom').fadeOut(500, function () {
+		$('.main').fadeOut(500, function () {
+			$('.select-page').fadeIn(1000);
+		});
+	});
+	
+});
+
+
+
+
+
+
+
+
+
+
 // Player Instances
 let charizardPlayer = new Player();
 // let bulbasaurPlayer = new Player();
@@ -25,7 +53,7 @@ let combatText = $('.combat-text');
 
 // Set player and Enemy health to 1000
 playerHealth.text(charizardPlayer.health);
-enemyHealth.text(charizardEnemy.health);
+enemyHealth.text(charizardEnemy.health + '/1000');
 
 // Click Move1 Function to hit enemy and display results
 move1.on('click', function() {
@@ -33,7 +61,7 @@ move1.on('click', function() {
 	// Generate random number to hit enemy health
 	let num = _.random(0, 25);
   charizardEnemy.hit(num);
-  enemyHealth.text(charizardEnemy.health);
+  enemyHealth.text(charizardEnemy.health + '/1000');
 
   // Display health change and damage amount in combat text
   let eventText = charizardEnemy.health;
@@ -47,7 +75,7 @@ move2.on('click', function() {
 	// Generate random number to hit enemy health
 	let num = _.random(0, 100);
   charizardEnemy.hit(num); 
-  enemyHealth.text(charizardEnemy.health);
+  enemyHealth.text(charizardEnemy.health + '/1000');
 
   // Display health change and damage amount in combat text
   let eventText = charizardEnemy.health;
@@ -62,7 +90,7 @@ move3.on('click', function() {
 	// Generate random number to hit enemy health
 	let num = _.random(0, 200);
   charizardEnemy.hit(num);
-  enemyHealth.text(charizardEnemy.health);
+  enemyHealth.text(charizardEnemy.health + '/1000');
 
   // Display health change and damage amount in combat text
   let eventText = charizardEnemy.health;
@@ -77,7 +105,7 @@ move4.on('click', function() {
 	// Generate random number to hit enemy health
 	let num = _.random(0, 500);
   charizardEnemy.hit(num);
-  enemyHealth.text(charizardEnemy.health);
+  enemyHealth.text(charizardEnemy.health + '/1000');
 
   // Display health change and damage amount in combat text
   let eventText = charizardEnemy.health;
