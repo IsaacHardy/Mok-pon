@@ -4,8 +4,16 @@ import moment from 'moment';
 import Player from './player';
 import Enemy from './enemy';
 
+// Audio variables 
+let audio1 = document.getElementById('open');
+let audio2 = document.getElementById('battle');
 
+// Click event to fadeout pages and stop/start audio 
 $('.start-game').on('click', function() {
+	audio1.pause();
+	audio2.play();
+	audio1.currentTime = 0;
+	audio2.currentTime = 0;
 	$('.select-page').fadeOut(500, function () {
 		$('.main').fadeIn(1000, function () {
 			$('.bottom').fadeIn(750);
@@ -14,7 +22,12 @@ $('.start-game').on('click', function() {
 	
 });
 
+// Click event to fadeout pages and stop/start audio 
 $('#new-game').on('click', function() {
+	audio2.pause();
+	audio1.play();
+	audio1.currentTime = 0;
+	audio2.currentTime = 0;
 	$('.bottom').fadeOut(500, function () {
 		$('.main').fadeOut(500, function () {
 			$('.select-page').fadeIn(1000);
@@ -22,6 +35,32 @@ $('#new-game').on('click', function() {
 	});
 	
 });
+
+// Click event to stop/start audio 
+$('#quit-game').on('click', function() {
+	audio2.pause();
+	audio1.pause();
+	audio1.currentTime = 0;
+	audio2.currentTime = 0;
+})
+
+// // Audio function for the site
+// let audio1 = document.getElementById('open');
+// let audio2 = document.getElementById('battle');
+
+// $('.start-game').on('click', function() {
+// 	audio1.pause();
+// 	audio2.play();
+// 	audio1.currentTime = 0;
+// 	audio2.currentTime = 0;
+// })
+
+// $('#new-game').on('click', function() {
+// 	audio2.pause();
+// 	audio1.play();
+// 	audio1.currentTime = 0;
+// 	audio2.currentTime = 0;
+// })
 
 
 

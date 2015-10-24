@@ -39,21 +39,61 @@ var _enemy = require('./enemy');
 
 var _enemy2 = _interopRequireDefault(_enemy);
 
+// Audio variables
+var audio1 = document.getElementById('open');
+var audio2 = document.getElementById('battle');
+
+// Click event to fadeout pages and stop/start audio
 (0, _jquery2['default'])('.start-game').on('click', function () {
-  (0, _jquery2['default'])('.select-page').fadeOut(500, function () {
-    (0, _jquery2['default'])('.main').fadeIn(1000, function () {
-      (0, _jquery2['default'])('.bottom').fadeIn(750);
-    });
-  });
+	audio1.pause();
+	audio2.play();
+	audio1.currentTime = 0;
+	audio2.currentTime = 0;
+	(0, _jquery2['default'])('.select-page').fadeOut(500, function () {
+		(0, _jquery2['default'])('.main').fadeIn(1000, function () {
+			(0, _jquery2['default'])('.bottom').fadeIn(750);
+		});
+	});
 });
 
+// Click event to fadeout pages and stop/start audio
 (0, _jquery2['default'])('#new-game').on('click', function () {
-  (0, _jquery2['default'])('.bottom').fadeOut(500, function () {
-    (0, _jquery2['default'])('.main').fadeOut(500, function () {
-      (0, _jquery2['default'])('.select-page').fadeIn(1000);
-    });
-  });
+	audio2.pause();
+	audio1.play();
+	audio1.currentTime = 0;
+	audio2.currentTime = 0;
+	(0, _jquery2['default'])('.bottom').fadeOut(500, function () {
+		(0, _jquery2['default'])('.main').fadeOut(500, function () {
+			(0, _jquery2['default'])('.select-page').fadeIn(1000);
+		});
+	});
 });
+
+// Click event to stop/start audio
+(0, _jquery2['default'])('#quit-game').on('click', function () {
+	audio2.pause();
+	audio1.pause();
+	audio1.currentTime = 0;
+	audio2.currentTime = 0;
+});
+
+// // Audio function for the site
+// let audio1 = document.getElementById('open');
+// let audio2 = document.getElementById('battle');
+
+// $('.start-game').on('click', function() {
+// 	audio1.pause();
+// 	audio2.play();
+// 	audio1.currentTime = 0;
+// 	audio2.currentTime = 0;
+// })
+
+// $('#new-game').on('click', function() {
+// 	audio2.pause();
+// 	audio1.play();
+// 	audio1.currentTime = 0;
+// 	audio2.currentTime = 0;
+// })
 
 // Player Instances
 var charizardPlayer = new _player2['default']();
@@ -81,57 +121,57 @@ enemyHealth.text(charizardEnemy.health + '/1000');
 // Click Move1 Function to hit enemy and display results
 move1.on('click', function () {
 
-  // Generate random number to hit enemy health
-  var num = _underscore2['default'].random(0, 25);
-  charizardEnemy.hit(num);
-  enemyHealth.text(charizardEnemy.health + '/1000');
+	// Generate random number to hit enemy health
+	var num = _underscore2['default'].random(0, 25);
+	charizardEnemy.hit(num);
+	enemyHealth.text(charizardEnemy.health + '/1000');
 
-  // Display health change and damage amount in combat text
-  var eventText = charizardEnemy.health;
-  (0, _jquery2['default'])(combatText).empty();
-  (0, _jquery2['default'])(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
+	// Display health change and damage amount in combat text
+	var eventText = charizardEnemy.health;
+	(0, _jquery2['default'])(combatText).empty();
+	(0, _jquery2['default'])(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
 });
 
 // Click Move2 Function to hit enemy and display results
 move2.on('click', function () {
 
-  // Generate random number to hit enemy health
-  var num = _underscore2['default'].random(0, 100);
-  charizardEnemy.hit(num);
-  enemyHealth.text(charizardEnemy.health + '/1000');
+	// Generate random number to hit enemy health
+	var num = _underscore2['default'].random(0, 100);
+	charizardEnemy.hit(num);
+	enemyHealth.text(charizardEnemy.health + '/1000');
 
-  // Display health change and damage amount in combat text
-  var eventText = charizardEnemy.health;
-  (0, _jquery2['default'])(combatText).empty();
-  (0, _jquery2['default'])(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
+	// Display health change and damage amount in combat text
+	var eventText = charizardEnemy.health;
+	(0, _jquery2['default'])(combatText).empty();
+	(0, _jquery2['default'])(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
 });
 
 // Click Move3 Function to hit enemy and display results
 move3.on('click', function () {
 
-  // Generate random number to hit enemy health
-  var num = _underscore2['default'].random(0, 200);
-  charizardEnemy.hit(num);
-  enemyHealth.text(charizardEnemy.health + '/1000');
+	// Generate random number to hit enemy health
+	var num = _underscore2['default'].random(0, 200);
+	charizardEnemy.hit(num);
+	enemyHealth.text(charizardEnemy.health + '/1000');
 
-  // Display health change and damage amount in combat text
-  var eventText = charizardEnemy.health;
-  (0, _jquery2['default'])(combatText).empty();
-  (0, _jquery2['default'])(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
+	// Display health change and damage amount in combat text
+	var eventText = charizardEnemy.health;
+	(0, _jquery2['default'])(combatText).empty();
+	(0, _jquery2['default'])(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
 });
 
 // Click Move4 Function to hit enemy and display results
 move4.on('click', function () {
 
-  // Generate random number to hit enemy health
-  var num = _underscore2['default'].random(0, 500);
-  charizardEnemy.hit(num);
-  enemyHealth.text(charizardEnemy.health + '/1000');
+	// Generate random number to hit enemy health
+	var num = _underscore2['default'].random(0, 500);
+	charizardEnemy.hit(num);
+	enemyHealth.text(charizardEnemy.health + '/1000');
 
-  // Display health change and damage amount in combat text
-  var eventText = charizardEnemy.health;
-  (0, _jquery2['default'])(combatText).empty();
-  (0, _jquery2['default'])(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
+	// Display health change and damage amount in combat text
+	var eventText = charizardEnemy.health;
+	(0, _jquery2['default'])(combatText).empty();
+	(0, _jquery2['default'])(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
 });
 
 },{"./enemy":1,"./player":3,"jquery":4,"moment":5,"underscore":6}],3:[function(require,module,exports){
