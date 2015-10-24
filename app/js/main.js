@@ -43,6 +43,15 @@ var _enemy2 = _interopRequireDefault(_enemy);
 var audio1 = document.getElementById('open');
 var audio2 = document.getElementById('battle');
 
+// Click event for title screen
+(0, _jquery2['default'])('.begin').on('click', function () {
+	(0, _jquery2['default'])('#launch-bot').fadeOut(500, function () {
+		(0, _jquery2['default'])('#launch-top').fadeOut(500, function () {
+			(0, _jquery2['default'])('.select-page').fadeIn(500);
+		});
+	});
+});
+
 // Click event to fadeout pages and stop/start audio
 (0, _jquery2['default'])('.start-game').on('click', function () {
 	audio1.pause();

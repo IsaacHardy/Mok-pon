@@ -8,6 +8,15 @@ import Enemy from './enemy';
 let audio1 = document.getElementById('open');
 let audio2 = document.getElementById('battle');
 
+// Click event for title screen
+$('.begin').on('click', function() {
+	$('#launch-bot').fadeOut(500, function() {
+		$('#launch-top').fadeOut(500, function() {
+			$('.select-page').fadeIn(500);
+		})
+	})
+})
+
 // Click event to fadeout pages and stop/start audio 
 $('.start-game').on('click', function() {
 	audio1.pause();

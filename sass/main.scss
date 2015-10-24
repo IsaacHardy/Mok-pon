@@ -41,6 +41,68 @@ div {
   border: none;
 }
 
+.launch-page {
+  display: block;
+}
+#launch-top {
+  background-image: url(../Images/start.gif);
+  background-size: 100% 107%;
+  background-repeat: no-repeat;
+  width: 667px;
+  height: 317px;
+  margin-top: 68px;
+  margin-left: 379px;
+}
+
+#launch-bot {
+  background-color: black;
+  width: 537px;
+  height: 321px;
+  border-radius: 3px;
+  margin-top: 92px;
+  margin-left: 445px;
+  color: white;
+}
+
+.settings {
+  margin-top: 22px;
+}
+
+#new-game {
+  height: 28px;
+  margin-top: -117px;
+  margin-left: 622px;
+  position: absolute;
+  width: 180px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+#quit-game {
+  position: absolute;
+  margin-top: -148px;
+  margin-left: 1031px;
+  width: 35px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+
+.begin {
+  position: absolute;
+  bottom: -373px;
+  right: 455px;
+  width: 155px;
+  height: 26px;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
 .select-page {
   width: 667px;
   margin-top: 66px;
@@ -49,6 +111,7 @@ div {
   background-image: url(../Images/selectback.jpg);
   background-size: 100%;
   background-repeat: no-repeat;
+  display: none;
 
   h2 {
     margin-bottom: 35px;
@@ -72,28 +135,28 @@ div {
   color: #F18412;
   font-size: 20px;
   border: 2px solid;
-  border-radius: 5px;
+  border-radius: 15px;
   padding: 3px;
   background-color: #F0DF74;
-  text-shadow: 0 0 4px #1A7296;
+  text-shadow: 0 0 2px #1A7296;
 }
 #saur {
   color: #0BB69C;
   font-size: 20px;
   border: 2px solid;
-  border-radius: 5px;
+  border-radius: 15px;
   padding: 3px;
-  background-color: #6CBF54;
-  text-shadow: 0 0 4px #FF7A70;
+  background-color: #589D33;
+  text-shadow: 0 0 2px #FF7A70;
 }
 #blast {
   color: #588AD0;
   font-size: 20px;
   border: 2px solid;
-  border-radius: 5px;
+  border-radius: 15px;
   padding: 3px;
   background-color: #D7AE40;
-  text-shadow: 0 0 4px #5B3A15;
+  text-shadow: 0 0 1px #5B3A15;
 }
 
 .select-bot {
@@ -130,6 +193,9 @@ div {
   margin-top: 36px;
   margin-left: 32px;
   width: 180px;
+  outline-color: #F18412;
+  outline-offset: -1px;
+  outline-width: medium;
 }
 #veno-pon {
 	background-image: url(../Images/venosaurgif.gif);
@@ -139,6 +205,9 @@ div {
   border: none;
   margin-top: 36px;
   width: 180px;
+  outline-color: #0BB69C;
+  outline-offset: -1px;
+  outline-width: medium;
 }
 #blast-pon {
 	background-image: url(../Images/blastiosegif.gif);
@@ -148,6 +217,9 @@ div {
   border: none;
   margin-top: 36px;
   width: 180px;
+  outline-color: #588AD0;
+  outline-offset: -1px;
+  outline-width: medium;
 }
 
 .main {
@@ -280,53 +352,4 @@ div {
   height: 100px;
 }
 
-#new-game, #quit-game {
-  width: 140px;
-  height: 55px;
-}
 
-#new-game {
-  height: 28px;
-  margin-top: 16px;
-  margin-left: -88px;
-  position: absolute;
-  width: 180px;
-  background-color: transparent;
-  border: none;
-}
-
-#quit-game {
-  position: absolute;
-  margin-top: -15px;
-  margin-left: 320px;
-  width: 35px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: transparent;
-  border: none;
-}
-
-.settings {
-  margin-top: 22px;
-}
-// .skill-list {
-// 	width: 40%;
-// 	text-align: center;
-//   margin-left: 30%;
-// }
-
-// .settings {
-// 	float: right;
-// 	position: absolute;
-// 	right: 0;
-// 	bottom: 0;
-// 	width: 10%;
-// 	height: 0;
-// 	border-style: solid;
-// 	border-width: 0 0 142px 200px;
-// 	border-color: transparent transparent black transparent;
-
-// 	.settings-btn {
-// 		width: 90px;
-// 	}
-// }

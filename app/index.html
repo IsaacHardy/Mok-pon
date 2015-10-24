@@ -12,67 +12,83 @@
 
 <div class="container">
 	<div class="ds"></div>
+	<div class="settings">
+		<button class="settings-btn" id="new-game"></button>
+		<button class="settings-btn" id="quit-game" src="#"></button> 
+		<button class="begin"></button> 		
+	</div>
+	
 	<div class="screen">
 
-		  <div class="select-page">
-		  	<h2>~ Select your Mokepon ~</h2>
-		  	<button class="mokepon-select" id="char-pon"></button>
-		  	<label id="chard">Zarichard</label>
+		<div class="launch-page">
+			<div id="launch-top"></div>
+			<div id="launch-bot">
+				<p>DISCLAIMER: Many customers have complained about the similarity of Mokepon to Pokemon, and after further litigation, we have determined that there is aboslutely no similarities between the two.</p>
+				<hr>
+				<p>If you are have difficulties determining the difference (e.g. Reading "Pokemon" in the title and NOT Mokepon) then please place down your mouse and keyboard and head directly to your doctor. </p>
+				<hr>
+				<p>Enjoy the game!</p>
+				
+			</div>
+		</div>
 
-		  	<button class="mokepon-select" id="veno-pon"></button>
-		  	<label id="saur">Xenovaur</label>
-		  	
-		  	<button class="mokepon-select" id="blast-pon"></button>
-		  	<label id="blast">Tastbloise</label>
-		  	
-		  	<div class="select-bot">
-		  		<button class="start-game">Fight	</button>
-		  	</div>
-		  </div>
+	  <div class="select-page">
+	  	<h2>~ Select your Mokepon ~</h2>
+	  	<button class="mokepon-select" id="char-pon"></button>
+	  	<label id="chard">Zarichard</label>
 
-		  <div class="main" id="gameboard">
+	  	<button class="mokepon-select" id="veno-pon"></button>
+	  	<label id="saur">Xenovaur</label>
+	  	
+	  	<button class="mokepon-select" id="blast-pon"></button>
+	  	<label id="blast">Tastbloise</label>
+	  	
+	  	<div class="select-bot">
+	  		<button class="start-game">Fight	</button>
+	  	</div>
+	  </div>
 
-		  	<div class="enemy-health">
-		  		<div class="name-and-level">
-		  			<h4 class="poke-name" id="enemy-name">Pokemon</h4>
-		  			<p class="poke-level" id="enemy-level">Lv:##</p>
-		  		</div>
-		  		<div id="enemy-bar"></div>
-		  		<p class="health-text" id="enemy-health"></p>
-		  	</div>
+	  <div class="main" id="gameboard">
 
-		  	<div class="sprites-area">
-		  		<div id="player-toon"></div>
-		  		<div id="enemy-toon"></div>
-		  	</div>
+	  	<div class="enemy-health">
+	  		<div class="name-and-level">
+	  			<h4 class="poke-name" id="enemy-name">Pokemon</h4>
+	  			<p class="poke-level" id="enemy-level">Lv:##</p>
+	  		</div>
+	  		<div id="enemy-bar"></div>
+	  		<p class="health-text" id="enemy-health"></p>
+	  	</div>
 
-		  	<div class="player-health">
-		  		<div class="name-and-level">
-		  			<h4 class="poke-name" id="player-name">Pokemon</h4>
-		  			<p class="poke-level" id="player-level">Lv:##</p>
-		  		</div>
-		  		<div id="player-bar"></div>
-		  		<p class="health-text" id="player-health"></p>
-		  	</div>
+	  	<div class="sprites-area">
+	  		<div id="player-toon"></div>
+	  		<div id="enemy-toon"></div>
+	  	</div>
 
-		  	<div class="combat-log">
-		  		<p class="combat-text"></p>
-		  	</div>  	
-		  </div>
-		  	
-		  <div class="bottom">
-		  	<div class="skill-list">
-		  		<ul>
-		  			<li><button class="skill-btn" id="move1">Move1</button><button class="skill-btn" id="move2">Move2</button></li>
-		  			<li><button class="skill-btn" id="move3">Move3</button><button class="skill-btn" id="move4">Move4</button></li>
-		  		</ul>
-		  	</div>
+	  	<div class="player-health">
+	  		<div class="name-and-level">
+	  			<h4 class="poke-name" id="player-name">Pokemon</h4>
+	  			<p class="poke-level" id="player-level">Lv:##</p>
+	  		</div>
+	  		<div id="player-bar"></div>
+	  		<p class="health-text" id="player-health"></p>
+	  	</div>
 
-		  	<div class="settings">
-		  		<button class="settings-btn" id="new-game"></button>
-		  		<button class="settings-btn" id="quit-game" src="#"></button>  		
-		  	</div>
-		  </div>
+	  	<div class="combat-log">
+	  		<p class="combat-text"></p>
+	  	</div>  	
+	  </div>
+	  	
+	  <div class="bottom">
+	  	<div class="skill-list">
+	  		<ul>
+	  			<li><button class="skill-btn" id="move1">Move1</button><button class="skill-btn" id="move2">Move2</button></li>
+	  			<li><button class="skill-btn" id="move3">Move3</button><button class="skill-btn" id="move4">Move4</button></li>
+	  		</ul>
+	  	</div>
+
+	  	
+	  </div>
+
 	</div>
 </div>
 
