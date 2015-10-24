@@ -2052,9 +2052,71 @@ div {
   border: none; }
 
 .select-page {
-  width: 47%;
-  margin-top: 152px;
-  margin-left: 378px; }
+  width: 667px;
+  margin-top: 66px;
+  margin-left: 379px;
+  height: 318px;
+  background-image: url(../Images/selectback.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat; }
+  .select-page h2 {
+    margin-bottom: 35px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    text-shadow: 3px 2px 12px whitesmoke; }
+
+.select-page > label {
+  position: absolute;
+  margin-left: -154px;
+  margin-top: -10px; }
+
+#chard {
+  color: #F18412;
+  font-size: 20px;
+  border: 2px solid;
+  border-radius: 5px;
+  padding: 3px;
+  background-color: #F0DF74;
+  text-shadow: 0 0 4px #1A7296; }
+
+#saur {
+  color: #0BB69C;
+  font-size: 20px;
+  border: 2px solid;
+  border-radius: 5px;
+  padding: 3px;
+  background-color: #6CBF54;
+  text-shadow: 0 0 4px #FF7A70; }
+
+#blast {
+  color: #588AD0;
+  font-size: 20px;
+  border: 2px solid;
+  border-radius: 5px;
+  padding: 3px;
+  background-color: #D7AE40;
+  text-shadow: 0 0 4px #5B3A15; }
+
+.select-bot {
+  background-image: url(../Images/handpoke.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin-top: 93px;
+  margin-left: 70px;
+  position: absolute;
+  width: 526px;
+  height: 294px; }
+
+.start-game {
+  display: block;
+  position: absolute;
+  bottom: 168px;
+  left: 103px;
+  width: 300px;
+  height: 100px; }
 
 .mokepon-select {
   width: 20%;
@@ -2064,17 +2126,30 @@ div {
 #char-pon {
   background-image: url(../Images/charizardgif.gif);
   background-size: 100%;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  margin-top: 36px;
+  margin-left: 32px;
+  width: 180px; }
 
 #veno-pon {
   background-image: url(../Images/venosaurgif.gif);
   background-size: 100%;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  margin-top: 36px;
+  width: 180px; }
 
 #blast-pon {
   background-image: url(../Images/blastiosegif.gif);
   background-size: 100%;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  margin-top: 36px;
+  width: 180px; }
 
 .main {
   width: 50%;

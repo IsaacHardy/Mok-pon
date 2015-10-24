@@ -44,23 +44,7 @@ $('#quit-game').on('click', function() {
 	audio2.currentTime = 0;
 })
 
-// // Audio function for the site
-// let audio1 = document.getElementById('open');
-// let audio2 = document.getElementById('battle');
 
-// $('.start-game').on('click', function() {
-// 	audio1.pause();
-// 	audio2.play();
-// 	audio1.currentTime = 0;
-// 	audio2.currentTime = 0;
-// })
-
-// $('#new-game').on('click', function() {
-// 	audio2.pause();
-// 	audio1.play();
-// 	audio1.currentTime = 0;
-// 	audio2.currentTime = 0;
-// })
 
 
 
