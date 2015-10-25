@@ -10,6 +10,9 @@ var Enemy = function Enemy() {
 		var hitPoints = num;
 		return this.health = this.health - hitPoints;
 	};
+	this.resetHealth = function () {
+		return this.health = 1000;
+	};
 };
 exports["default"] = Enemy;
 module.exports = exports["default"];
@@ -39,9 +42,57 @@ var _enemy = require('./enemy');
 
 var _enemy2 = _interopRequireDefault(_enemy);
 
+var _moves = require('./moves');
+
+var _moves2 = _interopRequireDefault(_moves);
+
+// Player Instances
+var pokePlayer = new _player2['default']({});
+
+// Enemy Instances
+var pokeEnemy = new _enemy2['default']({});
+
+// Movesets instances
+var zardMoves = new _moves2['default']({
+	one: 'Tackle',
+	two: 'Bite',
+	three: 'Flame Strike',
+	four: 'Flamethrower'
+});
+
+var venoMoves = new _moves2['default']({
+	one: 'Tackle',
+	two: 'Bite',
+	three: 'Vine Whip',
+	four: 'Solar Beam'
+});
+
+var blastMoves = new _moves2['default']({
+	one: 'Tackle',
+	two: 'Bite',
+	three: 'Water Punch',
+	four: 'Hydro Pump'
+});
+
+// Jquery node variables
+var playerHealth = (0, _jquery2['default'])('#player-health');
+var enemyHealth = (0, _jquery2['default'])('#enemy-health');
+var move1 = (0, _jquery2['default'])('#move1');
+var move2 = (0, _jquery2['default'])('#move2');
+var move3 = (0, _jquery2['default'])('#move3');
+var move4 = (0, _jquery2['default'])('#move4');
+var combatText = (0, _jquery2['default'])('.combat-text');
+var selectZard = (0, _jquery2['default'])('#char-pon');
+var selectVeno = (0, _jquery2['default'])('#veno-pon');
+var selectBlast = (0, _jquery2['default'])('#blast-pon');
+
 // Audio variables
 var audio1 = document.getElementById('open');
 var audio2 = document.getElementById('battle');
+
+// Set player and Enemy health to 1000
+playerHealth.text(pokePlayer.health + '/1000');
+enemyHealth.text(pokeEnemy.health + '/1000');
 
 // Click event for title screen
 (0, _jquery2['default'])('.begin').on('click', function () {
@@ -52,7 +103,11 @@ var audio2 = document.getElementById('battle');
 	});
 });
 
-// Click event to fadeout pages and stop/start audio
+// Start game click event:
+// fadeout pages and stop/start audio
+// clears health changes and combat text
+// adds correct sprites to combat area
+// adds correct moves to move buttons
 (0, _jquery2['default'])('.start-game').on('click', function () {
 	audio1.pause();
 	audio2.play();
@@ -63,6 +118,86 @@ var audio2 = document.getElementById('battle');
 			(0, _jquery2['default'])('.bottom').fadeIn(750);
 		});
 	});
+
+	// Determine if the game has been changed from start
+	// Clear health and remove text
+	if (pokeEnemy.health < 1000 || pokePlayer.health < 1000) {
+		pokeEnemy.resetHealth();
+		enemyHealth.text(pokeEnemy.health + '/1000');
+		pokePlayer.resetHealth();
+		playerHealth.text(pokePlayer.health + '/1000');
+		(0, _jquery2['default'])(combatText).empty();
+		(0, _jquery2['default'])(move1).empty();
+		(0, _jquery2['default'])(move2).empty();
+		(0, _jquery2['default'])(move3).empty();
+		(0, _jquery2['default'])(move4).empty();
+
+		// Determine if either of three pokemon have been checked
+		// Add that pokemon's moves to skill list
+		// Add sprite to game board
+		if (selectZard.is(':checked')) {
+			(0, _jquery2['default'])('#player-name').append('Zarichard');
+			(0, _jquery2['default'])('#enemy-name').append('Tastbloise');
+			(0, _jquery2['default'])(move1).append(zardMoves.one);
+			(0, _jquery2['default'])(move2).append(zardMoves.two);
+			(0, _jquery2['default'])(move3).append(zardMoves.three);
+			(0, _jquery2['default'])(move4).append(zardMoves.four);
+		} else if (selectVeno.is(':checked')) {
+			(0, _jquery2['default'])('#player-name').append('Xenosaur');
+			(0, _jquery2['default'])('#enemy-name').append('Zarichard');
+			(0, _jquery2['default'])(move1).append(venoMoves.one);
+			(0, _jquery2['default'])(move2).append(venoMoves.two);
+			(0, _jquery2['default'])(move3).append(venoMoves.three);
+			(0, _jquery2['default'])(move4).append(venoMoves.four);
+		} else if (selectBlast.is(':checked')) {
+			(0, _jquery2['default'])('#player-name').append('Tastbloise');
+			(0, _jquery2['default'])('#enemy-name').append('Xenosaur');
+			(0, _jquery2['default'])(move1).append(blastMoves.one);
+			(0, _jquery2['default'])(move2).append(blastMoves.two);
+			(0, _jquery2['default'])(move3).append(blastMoves.three);
+			(0, _jquery2['default'])(move4).append(blastMoves.four);
+		}
+
+		// If game wasn't changed, do the same anyways
+	} else {
+			(0, _jquery2['default'])(combatText).empty();
+			(0, _jquery2['default'])(move1).empty();
+			(0, _jquery2['default'])(move2).empty();
+			(0, _jquery2['default'])(move3).empty();
+			(0, _jquery2['default'])(move4).empty();
+
+			// Determine if either of three pokemon have been checked
+			// Add that pokemon's moves to skill list
+			// Add sprite to game board
+			if (selectZard.is(':checked')) {
+				(0, _jquery2['default'])('#enemy-toon').removeClass('no-class');
+				(0, _jquery2['default'])('#enemy-toon').addClass('enemytoon-blast');
+				(0, _jquery2['default'])('#player-name').append('Zarichard');
+				(0, _jquery2['default'])('#enemy-name').append('Tastbloise');
+				(0, _jquery2['default'])(move1).append(zardMoves.one);
+				(0, _jquery2['default'])(move2).append(zardMoves.two);
+				(0, _jquery2['default'])(move3).append(zardMoves.three);
+				(0, _jquery2['default'])(move4).append(zardMoves.four);
+			} else if (selectVeno.is(':checked')) {
+				(0, _jquery2['default'])('#enemy-toon').removeClass('no-class');
+				(0, _jquery2['default'])('#enemy-toon').addClass('enemytoon-zard');
+				(0, _jquery2['default'])('#player-name').append('Xenosaur');
+				(0, _jquery2['default'])('#enemy-name').append('Zarichard');
+				(0, _jquery2['default'])(move1).append(venoMoves.one);
+				(0, _jquery2['default'])(move2).append(venoMoves.two);
+				(0, _jquery2['default'])(move3).append(venoMoves.three);
+				(0, _jquery2['default'])(move4).append(venoMoves.four);
+			} else if (selectBlast.is(':checked')) {
+				(0, _jquery2['default'])('#enemy-toon').removeClass('no-class');
+				(0, _jquery2['default'])('#enemy-toon').addClass('enemytoon-veno');
+				(0, _jquery2['default'])('#player-name').append('Tastbloise');
+				(0, _jquery2['default'])('#enemy-name').append('Xenosaur');
+				(0, _jquery2['default'])(move1).append(blastMoves.one);
+				(0, _jquery2['default'])(move2).append(blastMoves.two);
+				(0, _jquery2['default'])(move3).append(blastMoves.three);
+				(0, _jquery2['default'])(move4).append(blastMoves.four);
+			}
+		}
 });
 
 // Click event to fadeout pages and stop/start audio
@@ -86,39 +221,16 @@ var audio2 = document.getElementById('battle');
 	audio2.currentTime = 0;
 });
 
-// Player Instances
-var charizardPlayer = new _player2['default']();
-// let bulbasaurPlayer = new Player();
-// let venosaurPlayer = new Player();
-
-// Enemy Instances
-var charizardEnemy = new _enemy2['default']();
-// let bulbasaurEnemy = new Enemy();
-// let venosaurEnemy = new Enemy();
-
-// Jquery node variables
-var playerHealth = (0, _jquery2['default'])('#player-health');
-var enemyHealth = (0, _jquery2['default'])('#enemy-health');
-var move1 = (0, _jquery2['default'])('#move1');
-var move2 = (0, _jquery2['default'])('#move2');
-var move3 = (0, _jquery2['default'])('#move3');
-var move4 = (0, _jquery2['default'])('#move4');
-var combatText = (0, _jquery2['default'])('.combat-text');
-
-// Set player and Enemy health to 1000
-playerHealth.text(charizardPlayer.health);
-enemyHealth.text(charizardEnemy.health + '/1000');
-
 // Click Move1 Function to hit enemy and display results
 move1.on('click', function () {
 
 	// Generate random number to hit enemy health
-	var num = _underscore2['default'].random(0, 25);
-	charizardEnemy.hit(num);
-	enemyHealth.text(charizardEnemy.health + '/1000');
+	var num = _underscore2['default'].random(5, 25);
+	pokeEnemy.hit(num);
+	enemyHealth.text(pokeEnemy.health + '/1000');
 
 	// Display health change and damage amount in combat text
-	var eventText = charizardEnemy.health;
+	var eventText = pokeEnemy.health;
 	(0, _jquery2['default'])(combatText).empty();
 	(0, _jquery2['default'])(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
 });
@@ -127,12 +239,12 @@ move1.on('click', function () {
 move2.on('click', function () {
 
 	// Generate random number to hit enemy health
-	var num = _underscore2['default'].random(0, 100);
-	charizardEnemy.hit(num);
-	enemyHealth.text(charizardEnemy.health + '/1000');
+	var num = _underscore2['default'].random(20, 100);
+	pokeEnemy.hit(num);
+	enemyHealth.text(pokeEnemy.health + '/1000');
 
 	// Display health change and damage amount in combat text
-	var eventText = charizardEnemy.health;
+	var eventText = pokeEnemy.health;
 	(0, _jquery2['default'])(combatText).empty();
 	(0, _jquery2['default'])(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
 });
@@ -141,12 +253,12 @@ move2.on('click', function () {
 move3.on('click', function () {
 
 	// Generate random number to hit enemy health
-	var num = _underscore2['default'].random(0, 200);
-	charizardEnemy.hit(num);
-	enemyHealth.text(charizardEnemy.health + '/1000');
+	var num = _underscore2['default'].random(50, 200);
+	pokeEnemy.hit(num);
+	enemyHealth.text(pokeEnemy.health + '/1000');
 
 	// Display health change and damage amount in combat text
-	var eventText = charizardEnemy.health;
+	var eventText = pokeEnemy.health;
 	(0, _jquery2['default'])(combatText).empty();
 	(0, _jquery2['default'])(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
 });
@@ -155,33 +267,60 @@ move3.on('click', function () {
 move4.on('click', function () {
 
 	// Generate random number to hit enemy health
-	var num = _underscore2['default'].random(0, 500);
-	charizardEnemy.hit(num);
-	enemyHealth.text(charizardEnemy.health + '/1000');
+	var num = _underscore2['default'].random(100, 500);
+	pokeEnemy.hit(num);
+	enemyHealth.text(pokeEnemy.health + '/1000');
 
 	// Display health change and damage amount in combat text
-	var eventText = charizardEnemy.health;
+	var eventText = pokeEnemy.health;
 	(0, _jquery2['default'])(combatText).empty();
 	(0, _jquery2['default'])(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
 });
 
-},{"./enemy":1,"./player":3,"jquery":4,"moment":5,"underscore":6}],3:[function(require,module,exports){
+},{"./enemy":1,"./moves":3,"./player":4,"jquery":5,"moment":6,"underscore":7}],3:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+var Movesets = function Movesets(set) {
+	set = set || {};
+	this.one = set.one;
+	this.two = set.two;
+	this.three = set.three;
+	this.four = set.four;
+};
+
+exports["default"] = Movesets;
+module.exports = exports["default"];
+
+},{}],4:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+	value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _moves = require('./moves');
+
+var _moves2 = _interopRequireDefault(_moves);
+
 var Player = function Player() {
 	this.health = 1000;
 	this.hit = function (num) {
 		var hitPoints = num;
 		return this.health = this.health - hitPoints;
 	};
+	this.resetHealth = function () {
+		return this.health = 1000;
+	};
 };
-exports["default"] = Player;
-module.exports = exports["default"];
+exports['default'] = Player;
+module.exports = exports['default'];
 
-},{}],4:[function(require,module,exports){
+},{"./moves":3}],5:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -9393,7 +9532,7 @@ return jQuery;
 
 }));
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 //! moment.js
 //! version : 2.10.6
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
@@ -12589,7 +12728,7 @@ return jQuery;
     return _moment;
 
 }));
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors

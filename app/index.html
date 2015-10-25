@@ -34,17 +34,22 @@
 
 	  <div class="select-page">
 	  	<h2>~ Select your Mokepon ~</h2>
-	  	<button class="mokepon-select" id="char-pon"></button>
-	  	<label id="chard">Zarichard</label>
+	  	<form class="label-holder">
+		  	
+		  	<label id="chard"><input type="radio" class="mokepon-select" id="char-pon" name="type"></label>
+		  	<p id="chard-text">Zarichard</p>
 
-	  	<button class="mokepon-select" id="veno-pon"></button>
-	  	<label id="saur">Xenovaur</label>
-	  	
-	  	<button class="mokepon-select" id="blast-pon"></button>
-	  	<label id="blast">Tastbloise</label>
-	  	
+		  	
+		  	<label id="saur"><input type="radio" class="mokepon-select" id="veno-pon" name="type"></label>
+		  	<p id="veno-text">Xenosaur</p>
+		  	
+		  	
+		  	<label id="blast"><input type="radio" class="mokepon-select" id="blast-pon" name="type"></label>
+		  	<p id="blast-text">Tastbloise</p>
+
+	  	</form>
 	  	<div class="select-bot">
-	  		<button class="start-game">Fight	</button>
+	  		<button class="start-game">Fight</button>
 	  	</div>
 	  </div>
 
@@ -52,22 +57,22 @@
 
 	  	<div class="enemy-health">
 	  		<div class="name-and-level">
-	  			<h4 class="poke-name" id="enemy-name">Pokemon</h4>
-	  			<p class="poke-level" id="enemy-level">Lv:##</p>
+	  			<h4 class="poke-name" id="enemy-name"></h4>
+	  			<p class="poke-level" id="enemy-level">Lv:100</p>
 	  		</div>
 	  		<div id="enemy-bar"></div>
 	  		<p class="health-text" id="enemy-health"></p>
 	  	</div>
 
 	  	<div class="sprites-area">
-	  		<div id="player-toon"></div>
-	  		<div id="enemy-toon"></div>
+	  		<div class="no-class" id="player-toon"></div>
+	  		<div class="no-class" id="enemy-toon"></div>
 	  	</div>
 
 	  	<div class="player-health">
 	  		<div class="name-and-level">
-	  			<h4 class="poke-name" id="player-name">Pokemon</h4>
-	  			<p class="poke-level" id="player-level">Lv:##</p>
+	  			<h4 class="poke-name" id="player-name"></h4>
+	  			<p class="poke-level" id="player-level">Lv:100</p>
 	  		</div>
 	  		<div id="player-bar"></div>
 	  		<p class="health-text" id="player-health"></p>
@@ -81,8 +86,8 @@
 	  <div class="bottom">
 	  	<div class="skill-list">
 	  		<ul>
-	  			<li><button class="skill-btn" id="move1">Move1</button><button class="skill-btn" id="move2">Move2</button></li>
-	  			<li><button class="skill-btn" id="move3">Move3</button><button class="skill-btn" id="move4">Move4</button></li>
+	  			<li><button class="skill-btn" id="move1"></button><button class="skill-btn" id="move2"></button></li>
+	  			<li><button class="skill-btn" id="move3"></button><button class="skill-btn" id="move4"></button></li>
 	  		</ul>
 	  	</div>
 

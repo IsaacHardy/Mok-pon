@@ -2098,7 +2098,7 @@ div {
 
 .begin {
   position: absolute;
-  bottom: -373px;
+  top: 805px;
   right: 455px;
   width: 155px;
   height: 26px;
@@ -2134,33 +2134,87 @@ div {
   font-size: 20px;
   border: 2px solid;
   border-radius: 15px;
-  padding: 3px;
+  padding: 80px;
   background-color: #F0DF74;
-  text-shadow: 0 0 2px #1A7296; }
+  text-shadow: 0 0 2px #1A7296;
+  background-image: url(../Images/charizardgif.gif);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  vertical-align: top;
+  cursor: pointer; }
 
 #saur {
   color: #0BB69C;
   font-size: 20px;
   border: 2px solid;
   border-radius: 15px;
-  padding: 3px;
+  padding: 80px;
   background-color: #589D33;
-  text-shadow: 0 0 2px #FF7A70; }
+  text-shadow: 0 0 2px #FF7A70;
+  background-image: url(../Images/venosaurgif.gif);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  vertical-align: top;
+  cursor: pointer; }
 
 #blast {
   color: #588AD0;
   font-size: 20px;
   border: 2px solid;
   border-radius: 15px;
-  padding: 3px;
+  padding: 80px;
   background-color: #D7AE40;
-  text-shadow: 0 0 1px #5B3A15; }
+  text-shadow: 0 0 1px #5B3A15;
+  background-image: url(../Images/blastiosegif.gif);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  vertical-align: top;
+  cursor: pointer; }
+
+.label-holder {
+  margin-top: 100px;
+  margin-left: 70px; }
+  .label-holder p {
+    position: absolute; }
+
+#char-pon {
+  width: 0;
+  visibility: hidden; }
+
+#veno-pon {
+  width: 0;
+  visibility: hidden; }
+
+#blast-pon {
+  width: 0;
+  visibility: hidden; }
+
+#chard-text {
+  top: 290px;
+  left: 484px;
+  color: #F18412;
+  font-size: 20px;
+  font-weight: bold; }
+
+#veno-text {
+  top: 290px;
+  left: 655px;
+  color: #0BB69C;
+  font-size: 20px;
+  font-weight: bold; }
+
+#blast-text {
+  top: 290px;
+  right: 136px;
+  color: #588AD0;
+  font-size: 20px;
+  font-weight: bold; }
 
 .select-bot {
   background-image: url(../Images/handpoke.jpg);
   background-size: 100%;
   background-repeat: no-repeat;
-  margin-top: 93px;
+  margin-top: 76px;
   margin-left: 70px;
   position: absolute;
   width: 526px;
@@ -2178,43 +2232,6 @@ div {
   width: 20%;
   height: 175px;
   display: inline-block; }
-
-#char-pon {
-  background-image: url(../Images/charizardgif.gif);
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  border: none;
-  margin-top: 36px;
-  margin-left: 32px;
-  width: 180px;
-  outline-color: #F18412;
-  outline-offset: -1px;
-  outline-width: medium; }
-
-#veno-pon {
-  background-image: url(../Images/venosaurgif.gif);
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  border: none;
-  margin-top: 36px;
-  width: 180px;
-  outline-color: #0BB69C;
-  outline-offset: -1px;
-  outline-width: medium; }
-
-#blast-pon {
-  background-image: url(../Images/blastiosegif.gif);
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  border: none;
-  margin-top: 36px;
-  width: 180px;
-  outline-color: #588AD0;
-  outline-offset: -1px;
-  outline-width: medium; }
 
 .main {
   width: 50%;
@@ -2298,12 +2315,28 @@ div {
   margin-top: 148px;
   margin-left: 40px; }
 
+.enemytoon-zard {
+  background-image: url(../Images/charizardgif.gif);
+  background-size: 100%;
+  background-repeat: no-repeat; }
+
+.enemytoon-veno {
+  background-image: url(../Images/venosaurgif.gif);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding: 12px; }
+
+.enemytoon-blast {
+  background-image: url(../Images/blastiosegif.gif);
+  background-size: 100%;
+  background-repeat: no-repeat; }
+
 #enemy-toon {
-  width: 40%;
-  height: 205px;
+  width: 30%;
+  height: 200px;
   float: right;
-  margin-top: -340px;
-  margin-right: 40px; }
+  margin-top: -208px;
+  margin-right: 62px; }
 
 .combat-log {
   height: 42px;

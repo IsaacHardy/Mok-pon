@@ -10,6 +10,9 @@ var Enemy = function Enemy() {
 		var hitPoints = num;
 		return this.health = this.health - hitPoints;
 	};
+	this.resetHealth = function () {
+		return this.health = 1000;
+	};
 };
 exports["default"] = Enemy;
 module.exports = exports["default"];
@@ -20,17 +23,44 @@ module.exports = exports["default"];
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+var Movesets = function Movesets(set) {
+	set = set || {};
+	this.one = set.one;
+	this.two = set.two;
+	this.three = set.three;
+	this.four = set.four;
+};
+
+exports["default"] = Movesets;
+module.exports = exports["default"];
+
+},{}],3:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+	value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _moves = require('./moves');
+
+var _moves2 = _interopRequireDefault(_moves);
+
 var Player = function Player() {
 	this.health = 1000;
 	this.hit = function (num) {
 		var hitPoints = num;
 		return this.health = this.health - hitPoints;
 	};
+	this.resetHealth = function () {
+		return this.health = 1000;
+	};
 };
-exports["default"] = Player;
-module.exports = exports["default"];
+exports['default'] = Player;
+module.exports = exports['default'];
 
-},{}],3:[function(require,module,exports){
+},{"./moves":2}],4:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -99,7 +129,7 @@ var _enemy2 = _interopRequireDefault(_enemy);
   });
 })();
 
-},{"./enemy":1,"./player":2}]},{},[3])
+},{"./enemy":1,"./player":3}]},{},[4])
 
 
 //# sourceMappingURL=tests.js.map
