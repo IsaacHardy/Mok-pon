@@ -38,6 +38,8 @@ let blastMoves = new Movesets({
 // Jquery node variables
 let playerHealth = $('#player-health');
 let enemyHealth = $('#enemy-health');
+let playerName = $('#player-name');
+let enemyName = $('#enemy-name');
 let move1 = $('#move1');
 let move2 = $('#move2');
 let move3 = $('#move3');
@@ -92,31 +94,55 @@ $('.start-game').on('click', function() {
 			$(move2).empty();
 			$(move3).empty();
 			$(move4).empty();
+			$(playerName).empty();
+			$(enemyName).empty();
 
 			// Determine if either of three pokemon have been checked
 			// Add that pokemon's moves to skill list
 			// Add sprite to game board
 			if (selectZard.is(':checked')) {
-				$('#player-name').append('Zarichard');
-				$('#enemy-name').append('Tastbloise')
+				let enemyMoveset = blastMoves;
+
+				$('#enemy-toon').removeClass();
+				$('#enemy-toon').addClass('enemytoon-blast');
+				$('#player-toon').removeClass();
+				$('#player-toon').addClass('playertoon-zard');
+				$(playerName).append('Zarichard');
+				$(enemyName).append('Tastbloise');
 				$(move1).append(zardMoves.one);
 				$(move2).append(zardMoves.two);
 				$(move3).append(zardMoves.three);
 				$(move4).append(zardMoves.four);
+
+				return enemyMoveset;
 			} else if (selectVeno.is(':checked')) {
-				$('#player-name').append('Xenosaur');
-				$('#enemy-name').append('Zarichard')
+				let enemyMoveset = zardMoves;
+
+				$('#enemy-toon').removeClass();
+				$('#enemy-toon').addClass('enemytoon-zard');
+				$('#player-toon').removeClass();
+				$('#player-toon').addClass('playertoon-veno');
+				$(playerName).append('Xenosaur');
+				$(enemyName).append('Zarichard');
 				$(move1).append(venoMoves.one);
 				$(move2).append(venoMoves.two);
 				$(move3).append(venoMoves.three);
 				$(move4).append(venoMoves.four);
+				return enemyMoveset;
 			} else if (selectBlast.is(':checked')) {
-				$('#player-name').append('Tastbloise');
-				$('#enemy-name').append('Xenosaur')
+				let enemyMoveset = venoMoves;
+
+				$('#enemy-toon').removeClass();
+				$('#enemy-toon').addClass('enemytoon-veno');
+				$('#player-toon').removeClass();
+				$('#player-toon').addClass('playertoon-blast');
+				$(playerName).append('Tastbloise');
+				$(enemyName).append('Xenosaur');
 				$(move1).append(blastMoves.one);
 				$(move2).append(blastMoves.two);
 				$(move3).append(blastMoves.three);
 				$(move4).append(blastMoves.four);
+				return enemyMoveset;
 			}
 
 		// If game wasn't changed, do the same anyways
@@ -126,44 +152,56 @@ $('.start-game').on('click', function() {
 		$(move2).empty();
 		$(move3).empty();
 		$(move4).empty();
+		$(playerName).empty();
+		$(enemyName).empty();
 
 			// Determine if either of three pokemon have been checked
 			// Add that pokemon's moves to skill list
 			// Add sprite to game board
 			if (selectZard.is(':checked')) {
-				$('#enemy-toon').removeClass('no-class');
+				let enemyMoveset = blastMoves;
+
+				$('#enemy-toon').removeClass();
 				$('#enemy-toon').addClass('enemytoon-blast');
-				$('#player-toon').removeClass('no-class');
+				$('#player-toon').removeClass();
 				$('#player-toon').addClass('playertoon-zard');
-				$('#player-name').append('Zarichard');
-				$('#enemy-name').append('Tastbloise');
+				$(playerName).append('Zarichard');
+				$(enemyName).append('Tastbloise');
 				$(move1).append(zardMoves.one);
 				$(move2).append(zardMoves.two);
 				$(move3).append(zardMoves.three);
 				$(move4).append(zardMoves.four);
+				return enemyMoveset;
 			} else if (selectVeno.is(':checked')) {
-				$('#enemy-toon').removeClass('no-class');
+				let enemyMoveset = zardMoves;
+
+				$('#enemy-toon').removeClass();
 				$('#enemy-toon').addClass('enemytoon-zard');
-				$('#player-toon').removeClass('no-class');
+				$('#player-toon').removeClass();
 				$('#player-toon').addClass('playertoon-veno');
-				$('#player-name').append('Xenosaur');
-				$('#enemy-name').append('Zarichard');
+				$(playerName).append('Xenosaur');
+				$(enemyName).append('Zarichard');
 				$(move1).append(venoMoves.one);
 				$(move2).append(venoMoves.two);
 				$(move3).append(venoMoves.three);
 				$(move4).append(venoMoves.four);
+				return enemyMoveset;
 			} else if (selectBlast.is(':checked')) {
-				$('#enemy-toon').removeClass('no-class');
+				let enemyMoveset = venoMoves;
+
+				$('#enemy-toon').removeClass();
 				$('#enemy-toon').addClass('enemytoon-veno');
-				$('#player-toon').removeClass('no-class');
+				$('#player-toon').removeClass();
 				$('#player-toon').addClass('playertoon-blast');
-				$('#player-name').append('Tastbloise');
-				$('#enemy-name').append('Xenosaur');
+				$(playerName).append('Tastbloise');
+				$(enemyName).append('Xenosaur');
 				$(move1).append(blastMoves.one);
 				$(move2).append(blastMoves.two);
 				$(move3).append(blastMoves.three);
 				$(move4).append(blastMoves.four);
+				return enemyMoveset;
 			}
+			// return enemyMoveset;
 	}
 	
 });
@@ -195,13 +233,537 @@ move1.on('click', function() {
 
 	// Generate random number to hit enemy health
 	let num = _.random(5, 25);
-  pokeEnemy.hit(num);
-  enemyHealth.text(pokeEnemy.health + '/1000');
+	let chance = _.random(1,100);
 
-  // Display health change and damage amount in combat text
-  let eventText = pokeEnemy.health;
-  $(combatText).empty();
-  $(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
+	if (chance <= 90) {
+		pokeEnemy.hit(num);
+		
+
+		if (pokeEnemy.health <= 0) {
+			setTimeout( function() {
+		  	$(combatText).empty();
+		  	$(combatText).append($(playerName).text() + ' used ' + $(move1).text() + '.');
+
+			  	setTimeout( function() {
+				  	$(combatText).empty();
+				  	$(combatText).append('It hit for ' + num + ' damage.');
+
+				  	setTimeout( function() {
+				  		enemyHealth.text('FNT/1000');
+  						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+
+				  	}, 1500);
+					}, 1500);
+			}, 250); 	
+  	
+	  
+		} else {
+
+			enemyHealth.text(pokeEnemy.health + '/1000');
+		  
+			setTimeout( function() {
+		  	$(combatText).empty();
+		  	$(combatText).append($(playerName).text() + ' used ' + $(move1).text() + '.');
+			  	setTimeout( function() {
+				  	$(combatText).empty();
+				  	$(combatText).append('It hit for ' + num + ' damage.');
+				  		setTimeout( function() {
+						  	let rand = _.random(1,4);
+						  	let dmg1 = _.random(10, 30);
+						  	let dmg2 = _.random(30, 125);
+						  	let dmg3 = _.random(75, 250);
+						  	let dmg4 = _.random(100, 500);
+						  	let chance = _.random(1, 100);
+
+						  	$(combatText).empty();
+						
+						  	if (rand === 1 && chance <= 80) {
+
+						  		pokePlayer.hit(dmg1);	  
+
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg1 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250); 
+
+						  		}	else {	
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg1 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+									}
+
+						  	} else if (rand === 1 && chance > 80) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 	  	
+
+
+						  	} else if (rand === 2 && chance <= 70) {
+						  		pokePlayer.hit(dmg2);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg2 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg2 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		// $(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		// playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 2 && chance > 70) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 		  	
+
+
+						  	} else if (rand === 3 && chance <= 60) {
+						  		pokePlayer.hit(dmg3);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg3 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg3 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		// $(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		// playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 3 && chance > 60) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 		  	
+
+
+						  	} else if (rand === 4 && chance <= 50) {
+						  		pokePlayer.hit(dmg4);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg4 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg4 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		// $(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		// playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 4 && chance > 50) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 	  	
+
+
+						  	}
+						  	
+						  }, 1500);
+					 }, 1500);
+				}, 250);
+
+		}
+
+	} else {
+		enemyHealth.text(pokeEnemy.health + '/1000');
+
+		if (pokeEnemy.health <= 0) {
+
+  		setTimeout( function() {
+		  	$(combatText).empty();
+		  	$(combatText).append($(playerName).text() + ' used ' + $(move1).text() + '.');
+
+			  	setTimeout( function() {
+				  	$(combatText).empty();
+				  	$(combatText).append('It missed.');
+
+				  	setTimeout( function() {
+				  		enemyHealth.text('FNT/1000');
+  						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+
+				  	}, 1500);
+					}, 1500);
+			}, 250); 	 	
+  
+	  
+		} else {
+
+		  setTimeout( function() {
+		  	$(combatText).empty();
+		  	$(combatText).append($(playerName).text() + ' used ' + $(move1).text() + '.');
+
+			  	setTimeout( function() {
+				  	$(combatText).empty();
+				  	$(combatText).append('It missed.');
+
+				  	setTimeout( function() {
+						  	let rand = _.random(1,4);
+						  	let dmg1 = _.random(10, 30);
+						  	let dmg2 = _.random(30, 125);
+						  	let dmg3 = _.random(75, 250);
+						  	let dmg4 = _.random(100, 500);
+						  	let chance = _.random(1, 100);
+
+						  	$(combatText).empty();
+						
+						  	if (rand === 1 && chance <= 80) {
+
+						  		pokePlayer.hit(dmg1);	  
+
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg1 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250); 
+
+						  		}	else {	
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg1 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		$(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		playerHealth.text(pokePlayer.health + '/1000');
+									}
+
+						  	} else if (rand === 1 && chance > 80) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 	  	
+
+
+						  	} else if (rand === 2 && chance <= 70) {
+						  		pokePlayer.hit(dmg2);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg2 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg2 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		$(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 2 && chance > 70) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 		  	
+
+
+						  	} else if (rand === 3 && chance <= 60) {
+						  		pokePlayer.hit(dmg3);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg3 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg3 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		$(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 3 && chance > 60) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 		  	
+
+
+						  	} else if (rand === 4 && chance <= 50) {
+						  		pokePlayer.hit(dmg4);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg4 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg4 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		$(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 4 && chance > 50) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 	  	
+
+
+						  	}
+						  	
+						  }, 1500);
+				  	
+					}, 1500);
+			}, 250); 	
+
+		  
+
+		}
+	}
+
 });
 
 // Click Move2 Function to hit enemy and display results
@@ -209,13 +771,537 @@ move2.on('click', function() {
 
 	// Generate random number to hit enemy health
 	let num = _.random(20, 100);
-  pokeEnemy.hit(num); 
-  enemyHealth.text(pokeEnemy.health + '/1000');
+	let chance = _.random(1,100);
 
-  // Display health change and damage amount in combat text
-  let eventText = pokeEnemy.health;
-  $(combatText).empty();
-  $(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
+	if (chance <= 70) {
+		pokeEnemy.hit(num);
+		
+
+		if (pokeEnemy.health <= 0) {
+			setTimeout( function() {
+		  	$(combatText).empty();
+		  	$(combatText).append($(playerName).text() + ' used ' + $(move2).text() + '.');
+
+			  	setTimeout( function() {
+				  	$(combatText).empty();
+				  	$(combatText).append('It hit for ' + num + ' damage.');
+
+				  	setTimeout( function() {
+				  		enemyHealth.text('FNT/1000');
+  						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+
+				  	}, 1500);
+					}, 1500);
+			}, 250); 	
+  	
+	  
+		} else {
+
+			enemyHealth.text(pokeEnemy.health + '/1000');
+		  
+			setTimeout( function() {
+		  	$(combatText).empty();
+		  	$(combatText).append($(playerName).text() + ' used ' + $(move2).text() + '.');
+			  	setTimeout( function() {
+				  	$(combatText).empty();
+				  	$(combatText).append('It hit for ' + num + ' damage.');
+				  		setTimeout( function() {
+						  	let rand = _.random(1,4);
+						  	let dmg1 = _.random(10, 30);
+						  	let dmg2 = _.random(30, 125);
+						  	let dmg3 = _.random(75, 250);
+						  	let dmg4 = _.random(100, 500);
+						  	let chance = _.random(1, 100);
+
+						  	$(combatText).empty();
+						
+						  	if (rand === 1 && chance <= 80) {
+
+						  		pokePlayer.hit(dmg1);	  
+
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg1 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250); 
+
+						  		}	else {	
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg1 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+									}
+
+						  	} else if (rand === 1 && chance > 80) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 	  	
+
+
+						  	} else if (rand === 2 && chance <= 70) {
+						  		pokePlayer.hit(dmg2);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg2 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg2 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		// $(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		// playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 2 && chance > 70) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 		  	
+
+
+						  	} else if (rand === 3 && chance <= 60) {
+						  		pokePlayer.hit(dmg3);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg3 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg3 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		// $(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		// playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 3 && chance > 60) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 		  	
+
+
+						  	} else if (rand === 4 && chance <= 50) {
+						  		pokePlayer.hit(dmg4);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg4 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg4 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		// $(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		// playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 4 && chance > 50) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 	  	
+
+
+						  	}
+						  	
+						  }, 1500);
+					 }, 1500);
+				}, 250);
+
+		}
+
+	} else {
+		enemyHealth.text(pokeEnemy.health + '/1000');
+
+		if (pokeEnemy.health <= 0) {
+
+  		setTimeout( function() {
+		  	$(combatText).empty();
+		  	$(combatText).append($(playerName).text() + ' used ' + $(move2).text() + '.');
+
+			  	setTimeout( function() {
+				  	$(combatText).empty();
+				  	$(combatText).append('It missed.');
+
+				  	setTimeout( function() {
+				  		enemyHealth.text('FNT/1000');
+  						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+
+				  	}, 1500);
+					}, 1500);
+			}, 250); 	 	
+  
+	  
+		} else {
+
+		  setTimeout( function() {
+		  	$(combatText).empty();
+		  	$(combatText).append($(playerName).text() + ' used ' + $(move2).text() + '.');
+
+			  	setTimeout( function() {
+				  	$(combatText).empty();
+				  	$(combatText).append('It missed.');
+
+				  	setTimeout( function() {
+						  	let rand = _.random(1,4);
+						  	let dmg1 = _.random(10, 30);
+						  	let dmg2 = _.random(30, 125);
+						  	let dmg3 = _.random(75, 250);
+						  	let dmg4 = _.random(100, 500);
+						  	let chance = _.random(1, 100);
+
+						  	$(combatText).empty();
+						
+						  	if (rand === 1 && chance <= 80) {
+
+						  		pokePlayer.hit(dmg1);	  
+
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg1 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250); 
+
+						  		}	else {	
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg1 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		$(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		playerHealth.text(pokePlayer.health + '/1000');
+									}
+
+						  	} else if (rand === 1 && chance > 80) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 	  	
+
+
+						  	} else if (rand === 2 && chance <= 70) {
+						  		pokePlayer.hit(dmg2);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg2 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg2 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		$(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 2 && chance > 70) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 		  	
+
+
+						  	} else if (rand === 3 && chance <= 60) {
+						  		pokePlayer.hit(dmg3);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg3 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg3 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		$(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 3 && chance > 60) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 		  	
+
+
+						  	} else if (rand === 4 && chance <= 50) {
+						  		pokePlayer.hit(dmg4);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg4 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg4 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		$(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 4 && chance > 50) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 	  	
+
+
+						  	}
+						  	
+						  }, 1500);
+				  	
+					}, 1500);
+			}, 250); 	
+
+		  
+
+		}
+	}
+  
   
 });
 
@@ -224,14 +1310,536 @@ move3.on('click', function() {
 
 	// Generate random number to hit enemy health
 	let num = _.random(50, 200);
-  pokeEnemy.hit(num);
-  enemyHealth.text(pokeEnemy.health + '/1000');
+  let chance = _.random(1,100);
 
-  // Display health change and damage amount in combat text
-  let eventText = pokeEnemy.health;
-  $(combatText).empty();
-  $(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
+	if (chance <= 60) {
+		pokeEnemy.hit(num);
+		
+
+		if (pokeEnemy.health <= 0) {
+			setTimeout( function() {
+		  	$(combatText).empty();
+		  	$(combatText).append($(playerName).text() + ' used ' + $(move3).text() + '.');
+
+			  	setTimeout( function() {
+				  	$(combatText).empty();
+				  	$(combatText).append('It hit for ' + num + ' damage.');
+
+				  	setTimeout( function() {
+				  		enemyHealth.text('FNT/1000');
+  						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+
+				  	}, 1500);
+					}, 1500);
+			}, 250); 	
+  	
+	  
+		} else {
+
+			enemyHealth.text(pokeEnemy.health + '/1000');
+		  
+			setTimeout( function() {
+		  	$(combatText).empty();
+		  	$(combatText).append($(playerName).text() + ' used ' + $(move3).text() + '.');
+			  	setTimeout( function() {
+				  	$(combatText).empty();
+				  	$(combatText).append('It hit for ' + num + ' damage.');
+				  		setTimeout( function() {
+						  	let rand = _.random(1,4);
+						  	let dmg1 = _.random(10, 30);
+						  	let dmg2 = _.random(30, 125);
+						  	let dmg3 = _.random(75, 250);
+						  	let dmg4 = _.random(100, 500);
+						  	let chance = _.random(1, 100);
+
+						  	$(combatText).empty();
+						
+						  	if (rand === 1 && chance <= 80) {
+
+						  		pokePlayer.hit(dmg1);	  
+
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg1 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250); 
+
+						  		}	else {	
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg1 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+									}
+
+						  	} else if (rand === 1 && chance > 80) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 	  	
+
+
+						  	} else if (rand === 2 && chance <= 70) {
+						  		pokePlayer.hit(dmg2);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg2 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg2 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		// $(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		// playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 2 && chance > 70) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 		  	
+
+
+						  	} else if (rand === 3 && chance <= 60) {
+						  		pokePlayer.hit(dmg3);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg3 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg3 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		// $(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		// playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 3 && chance > 60) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 		  	
+
+
+						  	} else if (rand === 4 && chance <= 50) {
+						  		pokePlayer.hit(dmg4);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg4 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg4 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		// $(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		// playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 4 && chance > 50) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 	  	
+
+
+						  	}
+						  	
+						  }, 1500);
+					 }, 1500);
+				}, 250);
+
+		}
+
+	} else {
+		enemyHealth.text(pokeEnemy.health + '/1000');
+
+		if (pokeEnemy.health <= 0) {
+
+  		setTimeout( function() {
+		  	$(combatText).empty();
+		  	$(combatText).append($(playerName).text() + ' used ' + $(move3).text() + '.');
+
+			  	setTimeout( function() {
+				  	$(combatText).empty();
+				  	$(combatText).append('It missed.');
+
+				  	setTimeout( function() {
+				  		enemyHealth.text('FNT/1000');
+  						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+
+				  	}, 1500);
+					}, 1500);
+			}, 250); 	 	
   
+	  
+		} else {
+
+		  setTimeout( function() {
+		  	$(combatText).empty();
+		  	$(combatText).append($(playerName).text() + ' used ' + $(move3).text() + '.');
+
+			  	setTimeout( function() {
+				  	$(combatText).empty();
+				  	$(combatText).append('It missed.');
+
+				  	setTimeout( function() {
+						  	let rand = _.random(1,4);
+						  	let dmg1 = _.random(10, 30);
+						  	let dmg2 = _.random(30, 125);
+						  	let dmg3 = _.random(75, 250);
+						  	let dmg4 = _.random(100, 500);
+						  	let chance = _.random(1, 100);
+
+						  	$(combatText).empty();
+						
+						  	if (rand === 1 && chance <= 80) {
+
+						  		pokePlayer.hit(dmg1);	  
+
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg1 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250); 
+
+						  		}	else {	
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg1 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		$(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		playerHealth.text(pokePlayer.health + '/1000');
+									}
+
+						  	} else if (rand === 1 && chance > 80) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 	  	
+
+
+						  	} else if (rand === 2 && chance <= 70) {
+						  		pokePlayer.hit(dmg2);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg2 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg2 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		$(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 2 && chance > 70) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 		  	
+
+
+						  	} else if (rand === 3 && chance <= 60) {
+						  		pokePlayer.hit(dmg3);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg3 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg3 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		$(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 3 && chance > 60) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 		  	
+
+
+						  	} else if (rand === 4 && chance <= 50) {
+						  		pokePlayer.hit(dmg4);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg4 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg4 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		$(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 4 && chance > 50) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 	  	
+
+
+						  	}
+						  	
+						  }, 1500);
+				  	
+					}, 1500);
+			}, 250); 	
+
+		  
+
+		}
+	}
 });
 
 // Click Move4 Function to hit enemy and display results
@@ -239,13 +1847,536 @@ move4.on('click', function() {
 
 	// Generate random number to hit enemy health
 	let num = _.random(100, 500);
-  pokeEnemy.hit(num);
-  enemyHealth.text(pokeEnemy.health + '/1000');
+  let chance = _.random(1,100);
 
-  // Display health change and damage amount in combat text
-  let eventText = pokeEnemy.health;
-  $(combatText).empty();
-  $(combatText).append('You hit charizardEnemy for ' + num + ' damage!');
+	if (chance <= 50) {
+		pokeEnemy.hit(num);
+		
+
+		if (pokeEnemy.health <= 0) {
+			setTimeout( function() {
+		  	$(combatText).empty();
+		  	$(combatText).append($(playerName).text() + ' used ' + $(move4).text() + '.');
+
+			  	setTimeout( function() {
+				  	$(combatText).empty();
+				  	$(combatText).append('It hit for ' + num + ' damage.');
+
+				  	setTimeout( function() {
+				  		enemyHealth.text('FNT/1000');
+  						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+
+				  	}, 1500);
+					}, 1500);
+			}, 250); 	
+  	
+	  
+		} else {
+
+			enemyHealth.text(pokeEnemy.health + '/1000');
+		  
+			setTimeout( function() {
+		  	$(combatText).empty();
+		  	$(combatText).append($(playerName).text() + ' used ' + $(move4).text() + '.');
+			  	setTimeout( function() {
+				  	$(combatText).empty();
+				  	$(combatText).append('It hit for ' + num + ' damage.');
+				  		setTimeout( function() {
+						  	let rand = _.random(1,4);
+						  	let dmg1 = _.random(10, 30);
+						  	let dmg2 = _.random(30, 125);
+						  	let dmg3 = _.random(75, 250);
+						  	let dmg4 = _.random(100, 500);
+						  	let chance = _.random(1, 100);
+
+						  	$(combatText).empty();
+						
+						  	if (rand === 1 && chance <= 80) {
+
+						  		pokePlayer.hit(dmg1);	  
+
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg1 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250); 
+
+						  		}	else {	
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg1 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+									}
+
+						  	} else if (rand === 1 && chance > 80) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 	  	
+
+
+						  	} else if (rand === 2 && chance <= 70) {
+						  		pokePlayer.hit(dmg2);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg2 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg2 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		// $(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		// playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 2 && chance > 70) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 		  	
+
+
+						  	} else if (rand === 3 && chance <= 60) {
+						  		pokePlayer.hit(dmg3);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg3 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg3 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		// $(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		// playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 3 && chance > 60) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 		  	
+
+
+						  	} else if (rand === 4 && chance <= 50) {
+						  		pokePlayer.hit(dmg4);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg4 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg4 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		// $(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		// playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 4 && chance > 50) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 	  	
+
+
+						  	}
+						  	
+						  }, 1500);
+					 }, 1500);
+				}, 250);
+
+		}
+
+	} else {
+		enemyHealth.text(pokeEnemy.health + '/1000');
+
+		if (pokeEnemy.health <= 0) {
+
+  		setTimeout( function() {
+		  	$(combatText).empty();
+		  	$(combatText).append($(playerName).text() + ' used ' + $(move4).text() + '.');
+
+			  	setTimeout( function() {
+				  	$(combatText).empty();
+				  	$(combatText).append('It missed.');
+
+				  	setTimeout( function() {
+				  		enemyHealth.text('FNT/1000');
+  						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+
+				  	}, 1500);
+					}, 1500);
+			}, 250); 	 	
+  
+	  
+		} else {
+
+		  setTimeout( function() {
+		  	$(combatText).empty();
+		  	$(combatText).append($(playerName).text() + ' used ' + $(move4).text() + '.');
+
+			  	setTimeout( function() {
+				  	$(combatText).empty();
+				  	$(combatText).append('It missed.');
+
+				  	setTimeout( function() {
+						  	let rand = _.random(1,4);
+						  	let dmg1 = _.random(10, 30);
+						  	let dmg2 = _.random(30, 125);
+						  	let dmg3 = _.random(75, 250);
+						  	let dmg4 = _.random(100, 500);
+						  	let chance = _.random(1, 100);
+
+						  	$(combatText).empty();
+						
+						  	if (rand === 1 && chance <= 80) {
+
+						  		pokePlayer.hit(dmg1);	  
+
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg1 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250); 
+
+						  		}	else {	
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg1 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		$(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		playerHealth.text(pokePlayer.health + '/1000');
+									}
+
+						  	} else if (rand === 1 && chance > 80) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move1).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 	  	
+
+
+						  	} else if (rand === 2 && chance <= 70) {
+						  		pokePlayer.hit(dmg2);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg2 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg2 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		$(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 2 && chance > 70) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move2).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 		  	
+
+
+						  	} else if (rand === 3 && chance <= 60) {
+						  		pokePlayer.hit(dmg3);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg3 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg3 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		$(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 3 && chance > 60) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move3).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 		  	
+
+
+						  	} else if (rand === 4 && chance <= 50) {
+						  		pokePlayer.hit(dmg4);
+						  		
+						  		if (pokePlayer.health <= 0) {
+
+						  			setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg4 + ' damage.');
+
+											  	setTimeout( function() {
+											  		enemyHealth.text('FNT/1000');
+							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+
+											  	}, 1500);
+												}, 1500);
+										}, 250);
+
+						  		}	else {	
+						  		
+							  		setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It hit for ' + dmg4 + ' damage.');
+											  	playerHealth.text(pokePlayer.health + '/1000');		
+
+												}, 1500);
+										}, 250);
+						  		
+							  		$(combatText).append('Enemy ' + $(enemyName).text() + ' hit you with ' + $(move1).text() + ' for ' + dmg1 + ' damage! It was super effective...' )
+							  		playerHealth.text(pokePlayer.health + '/1000');
+							  	}
+						  	} else if (rand === 4 && chance > 50) {
+
+							  	setTimeout( function() {
+									  	$(combatText).empty();
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + $(move4).text() + '.');
+
+										  	setTimeout( function() {
+											  	$(combatText).empty();
+											  	$(combatText).append('It missed.');
+											  	playerHealth.text(pokePlayer.health + '/1000');
+
+												}, 1500);
+										}, 250); 	  	
+
+
+						  	}
+						  	
+						  }, 1500);
+				  	
+					}, 1500);
+			}, 250); 	
+
+		  
+
+		}
+	}
   
 });
 
