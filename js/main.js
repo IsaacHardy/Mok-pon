@@ -133,6 +133,8 @@ $('.start-game').on('click', function() {
 			if (selectZard.is(':checked')) {
 				$('#enemy-toon').removeClass('no-class');
 				$('#enemy-toon').addClass('enemytoon-blast');
+				$('#player-toon').removeClass('no-class');
+				$('#player-toon').addClass('playertoon-zard');
 				$('#player-name').append('Zarichard');
 				$('#enemy-name').append('Tastbloise');
 				$(move1).append(zardMoves.one);
@@ -142,6 +144,8 @@ $('.start-game').on('click', function() {
 			} else if (selectVeno.is(':checked')) {
 				$('#enemy-toon').removeClass('no-class');
 				$('#enemy-toon').addClass('enemytoon-zard');
+				$('#player-toon').removeClass('no-class');
+				$('#player-toon').addClass('playertoon-veno');
 				$('#player-name').append('Xenosaur');
 				$('#enemy-name').append('Zarichard');
 				$(move1).append(venoMoves.one);
@@ -151,6 +155,8 @@ $('.start-game').on('click', function() {
 			} else if (selectBlast.is(':checked')) {
 				$('#enemy-toon').removeClass('no-class');
 				$('#enemy-toon').addClass('enemytoon-veno');
+				$('#player-toon').removeClass('no-class');
+				$('#player-toon').addClass('playertoon-blast');
 				$('#player-name').append('Tastbloise');
 				$('#enemy-name').append('Xenosaur');
 				$(move1).append(blastMoves.one);

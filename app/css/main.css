@@ -2261,7 +2261,8 @@ div {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 100%;
-  height: 274px; }
+  height: 274px;
+  margin-top: 147px; }
 
 #enemy-bar, #player-bar {
   width: 20%;
@@ -2309,34 +2310,54 @@ div {
   margin-right: 8%;
   margin-top: 6px; }
 
+.playertoon-zard {
+  background-image: url(../Images/CharizardBack.gif);
+  background-size: 100%;
+  background-repeat: no-repeat; }
+
+.playertoon-veno {
+  background-image: url(../Images/VenusaurBack.gif);
+  background-size: 95%;
+  background-repeat: no-repeat;
+  margin-top: 93px;
+  margin-left: 37px; }
+
+.playertoon-blast {
+  background-image: url(../Images/BlastoiseBack.gif);
+  background-size: 75%;
+  background-repeat: no-repeat;
+  margin-top: 100px;
+  margin-left: 60px; }
+
 #player-toon {
   width: 40%;
-  height: 205px;
-  margin-top: 148px;
-  margin-left: 40px; }
+  height: 275px;
+  position: absolute;
+  top: 0; }
 
 .enemytoon-zard {
   background-image: url(../Images/charizardgif.gif);
   background-size: 100%;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  margin-top: -8px; }
 
 .enemytoon-veno {
   background-image: url(../Images/venosaurgif.gif);
-  background-size: 100%;
+  background-size: 90%;
   background-repeat: no-repeat;
-  padding: 12px; }
+  margin-top: 35px; }
 
 .enemytoon-blast {
   background-image: url(../Images/blastiosegif.gif);
-  background-size: 100%;
-  background-repeat: no-repeat; }
+  background-size: 80%;
+  background-repeat: no-repeat;
+  margin-top: 34px; }
 
 #enemy-toon {
   width: 30%;
   height: 200px;
   float: right;
-  margin-top: -208px;
-  margin-right: 62px; }
+  margin-right: 50px; }
 
 .combat-log {
   height: 42px;

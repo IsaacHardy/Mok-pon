@@ -172,6 +172,8 @@ enemyHealth.text(pokeEnemy.health + '/1000');
 			if (selectZard.is(':checked')) {
 				(0, _jquery2['default'])('#enemy-toon').removeClass('no-class');
 				(0, _jquery2['default'])('#enemy-toon').addClass('enemytoon-blast');
+				(0, _jquery2['default'])('#player-toon').removeClass('no-class');
+				(0, _jquery2['default'])('#player-toon').addClass('playertoon-zard');
 				(0, _jquery2['default'])('#player-name').append('Zarichard');
 				(0, _jquery2['default'])('#enemy-name').append('Tastbloise');
 				(0, _jquery2['default'])(move1).append(zardMoves.one);
@@ -181,6 +183,8 @@ enemyHealth.text(pokeEnemy.health + '/1000');
 			} else if (selectVeno.is(':checked')) {
 				(0, _jquery2['default'])('#enemy-toon').removeClass('no-class');
 				(0, _jquery2['default'])('#enemy-toon').addClass('enemytoon-zard');
+				(0, _jquery2['default'])('#player-toon').removeClass('no-class');
+				(0, _jquery2['default'])('#player-toon').addClass('playertoon-veno');
 				(0, _jquery2['default'])('#player-name').append('Xenosaur');
 				(0, _jquery2['default'])('#enemy-name').append('Zarichard');
 				(0, _jquery2['default'])(move1).append(venoMoves.one);
@@ -190,6 +194,8 @@ enemyHealth.text(pokeEnemy.health + '/1000');
 			} else if (selectBlast.is(':checked')) {
 				(0, _jquery2['default'])('#enemy-toon').removeClass('no-class');
 				(0, _jquery2['default'])('#enemy-toon').addClass('enemytoon-veno');
+				(0, _jquery2['default'])('#player-toon').removeClass('no-class');
+				(0, _jquery2['default'])('#player-toon').addClass('playertoon-blast');
 				(0, _jquery2['default'])('#player-name').append('Tastbloise');
 				(0, _jquery2['default'])('#enemy-name').append('Xenosaur');
 				(0, _jquery2['default'])(move1).append(blastMoves.one);
