@@ -2562,6 +2562,10 @@ div {
   background-image: url(../Images/handpoke.jpg);
   background-size: 100%;
   background-repeat: no-repeat; }
+  .leaderboard-page ol {
+    width: 300px;
+    height: 100px;
+    color: white; }
 
 .lb-back {
   position: absolute;
@@ -2573,5 +2577,47 @@ div {
   border-radius: 0 50% 50% 0;
   background-color: white;
   outline: none; }
+
+.lb-page-board {
+  width: 370px;
+  height: 275px;
+  background: black;
+  opacity: 0.3;
+  border-radius: 15px;
+  margin-left: 80px;
+  margin-top: -18px; }
+  .lb-page-board h2 {
+    padding-top: 28px;
+    padding-left: 25px;
+    text-decoration: underline;
+    line-height: 20px;
+    color: white;
+    font-size: 36px; }
+  .lb-page-board li {
+    margin: 0;
+    display: inline-block; }
+  .lb-page-board h4 {
+    display: inline-block;
+    margin-left: 10px; }
+
+.ranks {
+  width: 350px; }
+  .ranks .ranks-first {
+    margin-left: 56px; }
+  .ranks .ranks-score {
+    float: right;
+    margin-right: 74px; }
+
+.columns {
+  margin-left: -10px;
+  margin-top: -20px;
+  margin-bottom: 1px; }
+  .columns .column-rank {
+    margin-left: 10px; }
+  .columns .column-name {
+    margin-left: 40px; }
+  .columns .column-score {
+    margin-right: 20px;
+    float: right; }
 
 /*# sourceMappingURL=main.css.map */

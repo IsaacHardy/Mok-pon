@@ -6,6 +6,50 @@ import Enemy from './enemy';
 import Movesets from './moves';
 
 
+const APP_ID = 'Msy7YU1nO63MyrHRdDCibKmZ5deYuJrjEoKk5wY3';
+const API_KEY = 'e9uV4zVnvbIAQxo3i7Wrn1601Zm7Ru5o5zl7KsMy';
+
+$.ajaxSetup({
+  headers: {
+    'X-Parse-Application-Id': APP_ID,
+    'X-Parse-REST-API-Key': API_KEY
+  }
+});
+
+import LeadersCollection from './leaders_collection';
+import LeadersTemplate from './leaders_template';
+
+let leaders = new LeadersCollection();
+
+
+function renderLeaders() {
+  // Creating an empty dom node
+  let $ol = 
+  $('<ol><h2>Leader Board</h2><div class="columns"><h4 class="column-rank">Rank</h4><h4 class="column-name">Name</h4><h4 class="column-score">Score</h4></div></ol>');
+  
+  // iterate each of the models
+  leaders.each(function(lead){
+
+    // grab raw data from leaders model
+    let data = lead.toJSON();
+    
+    // pass the data to our template
+    let templateString = LeadersTemplate(data);
+
+    // use templateString to create an li dom node
+    let $li = $(templateString);
+
+    // append li to the ol
+    $ol.append($li);
+  });
+
+  // set ul to the body
+  $('.lb-page-board').html($ol);
+}
+
+leaders.fetch().then(renderLeaders);
+
+//////////////////////////////////////////////////
 // Player Instances
 let pokePlayer = new Player({});
 
