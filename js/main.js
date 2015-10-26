@@ -377,24 +377,32 @@ move1.on('click', function() {
 
 
 	// Generate random number to hit enemy health
+	// Display damage
 	let num = _.random(5, 25);
 	let chance = _.random(1,100);
 
 
-
+	// If move 1 hits
 	if (chance <= 90) {
 		pokeEnemy.hit(num);
 		
-
+		// If the enemies health is less than or equal to zero after hit
 		if (pokeEnemy.health <= 0) {
+
+			// Append text to combat log of play ability
 			setTimeout( function() {
 		  	$(combatText).empty();
 		  	$(combatText).append($(playerName).text() + ' used ' + $(move1).text() + '.');
-		  	
+		  		
+		  		// Append text to combat log of play dmg
 			  	setTimeout( function() {
 				  	$(combatText).empty();
 				  	$(combatText).append('It hit for ' + num + ' damage.');
 
+				  	// Update enemy health text
+				  	// Pause audio
+				  	// Start winning audio
+				  	// Append text to combat log of victory
 				  	setTimeout( function() {
 				  		enemyHealth.text('FNT/1000');
 				  		$(combatText).empty();
@@ -412,18 +420,25 @@ move1.on('click', function() {
 					}, 1500);
 			}, 250); 	
   	
-	  
+	  // If the enemies health was not less than or equal to zero
 		} else {
 
 			
-		  
+		  // Append text to combat log of play ability
 			setTimeout( function() {
 		  	$(combatText).empty();
 		  	$(combatText).append($(playerName).text() + ' used ' + $(move1).text() + '.');
+
+			  	// Append text to combat log of play dmg
 			  	setTimeout( function() {
 				  	$(combatText).empty();
 				  	$(combatText).append('It hit for ' + num + ' damage.');
 				  	enemyHealth.text(pokeEnemy.health + '/1000');
+
+				  		// Update enemy health text
+					  	// Pause audio
+					  	// Start winning audio
+					  	// Append text to combat log of victory
 				  		setTimeout( function() {
 						  	let rand = _.random(1,4);
 						  	let dmg1 = _.random(10, 30);
@@ -431,23 +446,29 @@ move1.on('click', function() {
 						  	let dmg3 = _.random(75, 250);
 						  	let dmg4 = _.random(100, 500);
 						  	let chance = _.random(1, 100);
-
-						  	$(combatText).empty();
+								$(combatText).empty();
 						
+								// If enemy selects first move and it hits
 						  	if (rand === 1 && chance <= 80) {
+									pokePlayer.hit(dmg1);	  
 
-						  		pokePlayer.hit(dmg1);	  
-
+									// If the enemies health is less than or equal to zero after hit
 						  		if (pokePlayer.health <= 0) {
 
+						  			// Append text to combat log of play ability
 						  			setTimeout( function() {
 									  	$(combatText).empty();
 									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + eMoveset[0] + '.');
 
+									  		// Append text to combat log of play dmg
 										  	setTimeout( function() {
 											  	$(combatText).empty();
 											  	$(combatText).append('It hit for ' + dmg1 + ' damage.');
 
+											  	// Update enemy health text
+											  	// Pause audio
+											  	// Start winning audio
+											  	// Append text to combat log of victory
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
 											  		$(combatText).empty();
@@ -459,10 +480,12 @@ move1.on('click', function() {
 
 						  		}	else {	
 
+						  			// Append text to combat log of play ability
 						  			setTimeout( function() {
 									  	$(combatText).empty();
 									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + eMoveset[0] + '.');
 
+									  		// Append text to combat log of play dmg
 										  	setTimeout( function() {
 											  	$(combatText).empty();
 											  	$(combatText).append('It hit for ' + dmg1 + ' damage.');
