@@ -148,7 +148,7 @@ enemyHealth.text(pokeEnemy.health + '/1000');
 	if ((0, _jquery2['default'])('.select-page').is(':visible')) {
 		(0, _jquery2['default'])('.select-page').fadeOut(500, function () {
 			(0, _jquery2['default'])('.main').fadeIn(1000, function () {
-				(0, _jquery2['default'])('.bottom').fadeIn(750);
+				(0, _jquery2['default'])('.battle-option').fadeIn(750);
 			});
 		});
 	}
@@ -324,6 +324,34 @@ enemyHealth.text(pokeEnemy.health + '/1000');
 				(0, _jquery2['default'])('#launch-bot').fadeIn(500);
 			});
 		});
+	});
+});
+
+// Click even for battle options movelist
+(0, _jquery2['default'])('.move-list-btn').on('click', function () {
+	(0, _jquery2['default'])('.battle-option').fadeOut(500, function () {
+		(0, _jquery2['default'])('.bottom').fadeIn(500);
+	});
+});
+
+// Back button for movelist
+(0, _jquery2['default'])('.back-move').on('click', function () {
+	(0, _jquery2['default'])('.bottom').fadeOut(500, function () {
+		(0, _jquery2['default'])('.battle-option').fadeIn(500);
+	});
+});
+
+// Click event for battle options bag
+(0, _jquery2['default'])('.bag-list-btn').on('click', function () {
+	(0, _jquery2['default'])('.battle-option').fadeOut(500, function () {
+		(0, _jquery2['default'])('.bag').fadeIn(500);
+	});
+});
+
+// Back button for bag
+(0, _jquery2['default'])('.back-bag').on('click', function () {
+	(0, _jquery2['default'])('.bag').fadeOut(500, function () {
+		(0, _jquery2['default'])('.battle-option').fadeIn(500);
 	});
 });
 

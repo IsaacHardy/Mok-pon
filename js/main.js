@@ -113,7 +113,7 @@ $('.start-game').on('click', function() {
 	if ($('.select-page').is(':visible')){
 		$('.select-page').fadeOut(500, function () {
 			$('.main').fadeIn(1000, function () {
-				$('.bottom').fadeIn(750);
+				$('.battle-option').fadeIn(750);
 			});
 		});
 	}
@@ -305,6 +305,33 @@ $('#quit-game').on('click', function() {
 	});
 });
 
+// Click even for battle options movelist
+$('.move-list-btn').on('click', function() {
+	$('.battle-option').fadeOut(500, function() {
+		$('.bottom').fadeIn(500);
+	});
+});
+
+// Back button for movelist
+$('.back-move').on('click', function() {
+	$('.bottom').fadeOut(500, function() {
+		$('.battle-option').fadeIn(500);
+	});
+});
+
+// Click event for battle options bag
+$('.bag-list-btn').on('click', function() {
+	$('.battle-option').fadeOut(500, function() {
+		$('.bag').fadeIn(500);
+	});
+});
+
+// Back button for bag
+$('.back-bag').on('click', function() {
+	$('.bag').fadeOut(500, function() {
+		$('.battle-option').fadeIn(500);
+	});
+});
 
 
 // Click Move1 Function to hit enemy and display results

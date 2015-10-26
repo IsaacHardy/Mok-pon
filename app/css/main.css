@@ -2403,6 +2403,85 @@ div {
   width: 200px;
   height: 100px;
   border: 2px dotted;
-  border-radius: 40px; }
+  border-radius: 40px;
+  outline: none; }
+
+.battle-option {
+  display: inline-block;
+  position: absolute;
+  left: 448px;
+  bottom: -398px;
+  height: 294px;
+  width: 660px;
+  background-image: url(../Images/handpoke.jpg);
+  background-size: 80%;
+  background-repeat: no-repeat;
+  display: none; }
+
+.bag {
+  display: inline-block;
+  position: absolute;
+  left: 448px;
+  bottom: -398px;
+  height: 294px;
+  width: 660px;
+  background-image: url(../Images/handpoke.jpg);
+  background-size: 80%;
+  background-repeat: no-repeat;
+  display: none; }
+
+.option-div {
+  margin-top: 36px;
+  margin-left: 51px; }
+
+.back-bag {
+  position: absolute;
+  bottom: 106px;
+  left: -12px;
+  height: 60px;
+  width: 60px;
+  border: 3px solid black;
+  border-radius: 0 50% 50% 0;
+  background-color: white;
+  outline: none; }
+
+.back-move {
+  position: absolute;
+  bottom: 103px;
+  left: 436px;
+  height: 60px;
+  width: 60px;
+  border: 3px solid black;
+  border-radius: 0 50% 50% 0;
+  background-color: white;
+  outline: none; }
+
+.move-list-btn {
+  border: 3px solid black;
+  background-color: #B5B5B5;
+  display: inline-block;
+  height: 200px;
+  width: 200px;
+  border-radius: 50% 0 0 50%;
+  margin-right: -4px;
+  padding-right: 0;
+  outline: none;
+  font-size: 28px; }
+  .move-list-btn:hover {
+    box-shadow: 0px 0px 20px black; }
+
+.bag-list-btn {
+  border: 3px solid black;
+  background-color: #900F17;
+  display: inline-block;
+  height: 200px;
+  width: 200px;
+  border-radius: 0 50% 50% 0;
+  margin-left: 0;
+  padding-left: 0;
+  outline: none;
+  font-size: 28px; }
+  .bag-list-btn:hover {
+    box-shadow: 0px 0px 20px black; }
 
 /*# sourceMappingURL=main.css.map */
