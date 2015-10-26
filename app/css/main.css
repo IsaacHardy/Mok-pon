@@ -2135,13 +2135,18 @@ div {
   border: 2px solid;
   border-radius: 15px;
   padding: 80px;
-  background-color: #F0DF74;
+  background-color: lightgrey;
   text-shadow: 0 0 2px #1A7296;
   background-image: url(../Images/charizardgif.gif);
   background-size: 100%;
   background-repeat: no-repeat;
   vertical-align: top;
   cursor: pointer; }
+  #chard:hover {
+    background-color: #F0DF74; }
+
+#chard.selected {
+  background-color: #1A7296; }
 
 #saur {
   color: #0BB69C;
@@ -2149,13 +2154,18 @@ div {
   border: 2px solid;
   border-radius: 15px;
   padding: 80px;
-  background-color: #589D33;
+  background-color: lightgrey;
   text-shadow: 0 0 2px #FF7A70;
   background-image: url(../Images/venosaurgif.gif);
   background-size: 100%;
   background-repeat: no-repeat;
   vertical-align: top;
   cursor: pointer; }
+  #saur:hover {
+    background-color: #589D33; }
+
+#saur.selected {
+  background-color: #E0403D; }
 
 #blast {
   color: #588AD0;
@@ -2163,13 +2173,18 @@ div {
   border: 2px solid;
   border-radius: 15px;
   padding: 80px;
-  background-color: #D7AE40;
+  background-color: lightgrey;
   text-shadow: 0 0 1px #5B3A15;
   background-image: url(../Images/blastiosegif.gif);
   background-size: 100%;
   background-repeat: no-repeat;
   vertical-align: top;
   cursor: pointer; }
+  #blast:hover {
+    background-color: #D7AE40; }
+
+#blast.selected {
+  background-color: #5B3A15; }
 
 .label-holder {
   margin-top: 100px;
@@ -2223,10 +2238,20 @@ div {
 .start-game {
   display: block;
   position: absolute;
-  bottom: 168px;
-  left: 103px;
-  width: 300px;
-  height: 100px; }
+  bottom: 10px;
+  left: 126px;
+  width: 250px;
+  height: 250px;
+  border: 2px solid;
+  background: transparent;
+  border-radius: 50%;
+  outline: none; }
+  .start-game p {
+    margin-bottom: 155px;
+    font-size: 40px;
+    color: #BEBEBE; }
+  .start-game:hover {
+    box-shadow: 0px 0px 20px black; }
 
 .mokepon-select {
   width: 20%;
@@ -2376,6 +2401,8 @@ div {
 
 .skill-btn {
   width: 200px;
-  height: 100px; }
+  height: 100px;
+  border: 2px dotted;
+  border-radius: 40px; }
 
 /*# sourceMappingURL=main.css.map */

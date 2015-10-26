@@ -66,15 +66,28 @@ let eMoveset = new Array();
 // Audio variables 
 let audio1 = document.getElementById('open');
 let audio2 = document.getElementById('battle');
+let audio3 = document.getElementById('win');
 
 // Set player and Enemy health to 1000
 playerHealth.text(pokePlayer.health + '/1000');
 enemyHealth.text(pokeEnemy.health + '/1000');
 
+// Add class to selected radio on selectpage
+$(document).ready(function(){
+    //add the Selected class to the checked radio button
+    $('input:checked').parent().addClass("selected");
+    //If another radio button is clicked, add the select class, and remove it from the previously selected radio
+    $('input').click(function () {
+        $('input:not(:checked)').parent().removeClass("selected");
+        $('input:checked').parent().addClass("selected");
+    });
+
+});
+
+
 // Click event for title screen
 $('.begin').on('click', function() {
 	if ($('#launch-top').is(':visible')){
-		console.log(true);
 		$('#launch-bot').fadeOut(500, function() {
 		$('#launch-top').fadeOut(500, function() {
 			$('.select-page').fadeIn(500);
@@ -92,9 +105,11 @@ $('.begin').on('click', function() {
 $('.start-game').on('click', function() {
 	eMoveset.length = 0;
 	audio1.pause();
+	audio3.pause();
 	audio2.play();
 	audio1.currentTime = 0;
 	audio2.currentTime = 0;
+	audio3.currentTime = 0;
 	if ($('.select-page').is(':visible')){
 		$('.select-page').fadeOut(500, function () {
 			$('.main').fadeIn(1000, function () {
@@ -257,10 +272,12 @@ $('.start-game').on('click', function() {
 // Click event to fadeout pages and stop/start audio 
 $('#new-game').on('click', function() {
 	audio2.pause();
+	audio3.pause();
 	audio1.play();
 	audio1.currentTime = 0;
 	audio2.currentTime = 0;
-	if ($('.bottom').is(':visible') || $('.main').is(':visible')){
+	audio3.currentTime = 0;
+		if ($('.bottom').is(':visible') || $('.main').is(':visible')){
 		$('.bottom').fadeOut(500, function () {
 			$('.main').fadeOut(500, function () {
 				$('.select-page').fadeIn(1000);
@@ -273,10 +290,11 @@ $('#new-game').on('click', function() {
 // Click event to stop/start audio 
 $('#quit-game').on('click', function() {
 	audio2.pause();
-	audio1.pause();
+	audio1.play();
+	audio3.pause();
 	audio1.currentTime = 0;
 	audio2.currentTime = 0;
-	audio1.play();
+	audio3.currentTime = 0;
 	$('.bottom').fadeOut(500, function () {
 		$('.main').fadeOut(500, function () {
 			$('.select-page').fadeOut(500, function() {
@@ -314,6 +332,12 @@ move1.on('click', function() {
 				  	setTimeout( function() {
 				  		enemyHealth.text('FNT/1000');
   						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+  						audio1.pause();
+  						audio2.pause();
+							audio3.play();
+							audio1.currentTime = 0;
+							audio2.currentTime = 0;
+							audio3.currentTime = 0;
 
 				  	}, 1500);
 					}, 1500);
@@ -575,6 +599,12 @@ move1.on('click', function() {
 				  	setTimeout( function() {
 				  		enemyHealth.text('FNT/1000');
   						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+  						audio1.pause();
+  						audio2.pause();
+							audio3.play();
+							audio1.currentTime = 0;
+							audio2.currentTime = 0;
+							audio3.currentTime = 0;
 
 				  	}, 1500);
 					}, 1500);
@@ -643,7 +673,7 @@ move1.on('click', function() {
 
 							  	setTimeout( function() {
 									  	$(combatText).empty();
-									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + eMoveset[0].text() + '.');
+									  	$(combatText).append('The opposing ' + $(enemyName).text() + ' used ' + eMoveset[0] + '.');
 
 										  	setTimeout( function() {
 											  	$(combatText).empty();
@@ -848,6 +878,12 @@ move2.on('click', function() {
 				  	setTimeout( function() {
 				  		enemyHealth.text('FNT/1000');
   						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+  						audio1.pause();
+  						audio2.pause();
+							audio3.play();
+							audio1.currentTime = 0;
+							audio2.currentTime = 0;
+							audio3.currentTime = 0;
 
 				  	}, 1500);
 					}, 1500);
@@ -1106,6 +1142,12 @@ move2.on('click', function() {
 				  	setTimeout( function() {
 				  		enemyHealth.text('FNT/1000');
   						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+  						audio1.pause();
+  						audio2.pause();
+							audio3.play();
+							audio1.currentTime = 0;
+							audio2.currentTime = 0;
+							audio3.currentTime = 0;
 
 				  	}, 1500);
 					}, 1500);
@@ -1379,6 +1421,12 @@ move3.on('click', function() {
 				  	setTimeout( function() {
 				  		enemyHealth.text('FNT/1000');
   						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+  						audio1.pause();
+  						audio2.pause();
+							audio3.play();
+							audio1.currentTime = 0;
+							audio2.currentTime = 0;
+							audio3.currentTime = 0;
 
 				  	}, 1500);
 					}, 1500);
@@ -1637,6 +1685,12 @@ move3.on('click', function() {
 				  	setTimeout( function() {
 				  		enemyHealth.text('FNT/1000');
   						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+  						audio1.pause();
+  						audio2.pause();
+							audio3.play();
+							audio1.currentTime = 0;
+							audio2.currentTime = 0;
+							audio3.currentTime = 0;
 
 				  	}, 1500);
 					}, 1500);
@@ -1908,6 +1962,12 @@ move4.on('click', function() {
 				  	setTimeout( function() {
 				  		enemyHealth.text('FNT/1000');
   						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+  						audio1.pause();
+  						audio2.pause();
+							audio3.play();
+							audio1.currentTime = 0;
+							audio2.currentTime = 0;
+							audio3.currentTime = 0;
 
 				  	}, 1500);
 					}, 1500);
@@ -2168,6 +2228,12 @@ move4.on('click', function() {
 				  	setTimeout( function() {
 				  		enemyHealth.text('FNT/1000');
   						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+  						audio1.pause();
+  						audio2.pause();
+							audio3.play();
+							audio1.currentTime = 0;
+							audio2.currentTime = 0;
+							audio3.currentTime = 0;
 
 				  	}, 1500);
 					}, 1500);

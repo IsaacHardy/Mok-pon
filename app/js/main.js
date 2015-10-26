@@ -104,15 +104,26 @@ var eMoveset = new Array();
 // Audio variables
 var audio1 = document.getElementById('open');
 var audio2 = document.getElementById('battle');
+var audio3 = document.getElementById('win');
 
 // Set player and Enemy health to 1000
 playerHealth.text(pokePlayer.health + '/1000');
 enemyHealth.text(pokeEnemy.health + '/1000');
 
+// Add class to selected radio on selectpage
+(0, _jquery2['default'])(document).ready(function () {
+	//add the Selected class to the checked radio button
+	(0, _jquery2['default'])('input:checked').parent().addClass("selected");
+	//If another radio button is clicked, add the select class, and remove it from the previously selected radio
+	(0, _jquery2['default'])('input').click(function () {
+		(0, _jquery2['default'])('input:not(:checked)').parent().removeClass("selected");
+		(0, _jquery2['default'])('input:checked').parent().addClass("selected");
+	});
+});
+
 // Click event for title screen
 (0, _jquery2['default'])('.begin').on('click', function () {
 	if ((0, _jquery2['default'])('#launch-top').is(':visible')) {
-		console.log(true);
 		(0, _jquery2['default'])('#launch-bot').fadeOut(500, function () {
 			(0, _jquery2['default'])('#launch-top').fadeOut(500, function () {
 				(0, _jquery2['default'])('.select-page').fadeIn(500);
@@ -129,9 +140,11 @@ enemyHealth.text(pokeEnemy.health + '/1000');
 (0, _jquery2['default'])('.start-game').on('click', function () {
 	eMoveset.length = 0;
 	audio1.pause();
+	audio3.pause();
 	audio2.play();
 	audio1.currentTime = 0;
 	audio2.currentTime = 0;
+	audio3.currentTime = 0;
 	if ((0, _jquery2['default'])('.select-page').is(':visible')) {
 		(0, _jquery2['default'])('.select-page').fadeOut(500, function () {
 			(0, _jquery2['default'])('.main').fadeIn(1000, function () {
@@ -282,9 +295,11 @@ enemyHealth.text(pokeEnemy.health + '/1000');
 // Click event to fadeout pages and stop/start audio
 (0, _jquery2['default'])('#new-game').on('click', function () {
 	audio2.pause();
+	audio3.pause();
 	audio1.play();
 	audio1.currentTime = 0;
 	audio2.currentTime = 0;
+	audio3.currentTime = 0;
 	if ((0, _jquery2['default'])('.bottom').is(':visible') || (0, _jquery2['default'])('.main').is(':visible')) {
 		(0, _jquery2['default'])('.bottom').fadeOut(500, function () {
 			(0, _jquery2['default'])('.main').fadeOut(500, function () {
@@ -297,10 +312,11 @@ enemyHealth.text(pokeEnemy.health + '/1000');
 // Click event to stop/start audio
 (0, _jquery2['default'])('#quit-game').on('click', function () {
 	audio2.pause();
-	audio1.pause();
+	audio1.play();
+	audio3.pause();
 	audio1.currentTime = 0;
 	audio2.currentTime = 0;
-	audio1.play();
+	audio3.currentTime = 0;
 	(0, _jquery2['default'])('.bottom').fadeOut(500, function () {
 		(0, _jquery2['default'])('.main').fadeOut(500, function () {
 			(0, _jquery2['default'])('.select-page').fadeOut(500, function () {
@@ -333,6 +349,12 @@ move1.on('click', function () {
 					setTimeout(function () {
 						enemyHealth.text('FNT/1000');
 						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+						audio1.pause();
+						audio2.pause();
+						audio3.play();
+						audio1.currentTime = 0;
+						audio2.currentTime = 0;
+						audio3.currentTime = 0;
 					}, 1500);
 				}, 1500);
 			}, 250);
@@ -559,6 +581,12 @@ move1.on('click', function () {
 					setTimeout(function () {
 						enemyHealth.text('FNT/1000');
 						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+						audio1.pause();
+						audio2.pause();
+						audio3.play();
+						audio1.currentTime = 0;
+						audio2.currentTime = 0;
+						audio3.currentTime = 0;
 					}, 1500);
 				}, 1500);
 			}, 250);
@@ -619,7 +647,7 @@ move1.on('click', function () {
 
 							setTimeout(function () {
 								(0, _jquery2['default'])(combatText).empty();
-								(0, _jquery2['default'])(combatText).append('The opposing ' + (0, _jquery2['default'])(enemyName).text() + ' used ' + eMoveset[0].text() + '.');
+								(0, _jquery2['default'])(combatText).append('The opposing ' + (0, _jquery2['default'])(enemyName).text() + ' used ' + eMoveset[0] + '.');
 
 								setTimeout(function () {
 									(0, _jquery2['default'])(combatText).empty();
@@ -789,6 +817,12 @@ move2.on('click', function () {
 					setTimeout(function () {
 						enemyHealth.text('FNT/1000');
 						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+						audio1.pause();
+						audio2.pause();
+						audio3.play();
+						audio1.currentTime = 0;
+						audio2.currentTime = 0;
+						audio3.currentTime = 0;
 					}, 1500);
 				}, 1500);
 			}, 250);
@@ -1015,6 +1049,12 @@ move2.on('click', function () {
 					setTimeout(function () {
 						enemyHealth.text('FNT/1000');
 						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+						audio1.pause();
+						audio2.pause();
+						audio3.play();
+						audio1.currentTime = 0;
+						audio2.currentTime = 0;
+						audio3.currentTime = 0;
 					}, 1500);
 				}, 1500);
 			}, 250);
@@ -1245,6 +1285,12 @@ move3.on('click', function () {
 					setTimeout(function () {
 						enemyHealth.text('FNT/1000');
 						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+						audio1.pause();
+						audio2.pause();
+						audio3.play();
+						audio1.currentTime = 0;
+						audio2.currentTime = 0;
+						audio3.currentTime = 0;
 					}, 1500);
 				}, 1500);
 			}, 250);
@@ -1471,6 +1517,12 @@ move3.on('click', function () {
 					setTimeout(function () {
 						enemyHealth.text('FNT/1000');
 						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+						audio1.pause();
+						audio2.pause();
+						audio3.play();
+						audio1.currentTime = 0;
+						audio2.currentTime = 0;
+						audio3.currentTime = 0;
 					}, 1500);
 				}, 1500);
 			}, 250);
@@ -1701,6 +1753,12 @@ move4.on('click', function () {
 					setTimeout(function () {
 						enemyHealth.text('FNT/1000');
 						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+						audio1.pause();
+						audio2.pause();
+						audio3.play();
+						audio1.currentTime = 0;
+						audio2.currentTime = 0;
+						audio3.currentTime = 0;
 					}, 1500);
 				}, 1500);
 			}, 250);
@@ -1927,6 +1985,12 @@ move4.on('click', function () {
 					setTimeout(function () {
 						enemyHealth.text('FNT/1000');
 						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+						audio1.pause();
+						audio2.pause();
+						audio3.play();
+						audio1.currentTime = 0;
+						audio2.currentTime = 0;
+						audio3.currentTime = 0;
 					}, 1500);
 				}, 1500);
 			}, 250);
