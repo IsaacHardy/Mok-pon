@@ -365,6 +365,8 @@ enemyHealth.text(pokeEnemy.health + '/1000');
 	});
 	setTimeout(function () {
 		(0, _jquery2['default'])(combatText).empty();
+		(0, _jquery2['default'])('#enemy-toon').removeClass();
+		(0, _jquery2['default'])('#enemy-toon').addClass('catch');
 		(0, _jquery2['default'])(combatText).append('You attempt to catch ' + (0, _jquery2['default'])(enemyName).text() + '!');
 		setTimeout(function () {
 			(0, _jquery2['default'])(combatText).empty();
@@ -378,11 +380,12 @@ enemyHealth.text(pokeEnemy.health + '/1000');
 				audio3.currentTime = 0;
 				(0, _jquery2['default'])(combatText).append('You caught ' + (0, _jquery2['default'])(enemyName).text() + '!');
 				setTimeout(function () {
+					// $('#enemy-toon').removeClass();
 					(0, _jquery2['default'])(combatText).empty();
 					(0, _jquery2['default'])(combatText).append('Press the HOME button to start a new game!');
-				});
-			}, 4000);
-		}, 4000);
+				}, 2000);
+			}, 3000);
+		}, 5000);
 	}, 500);
 });
 

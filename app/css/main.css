@@ -2534,4 +2534,10 @@ div {
   .bag-list-btn:hover {
     box-shadow: 0px 0px 20px black; }
 
+.catch {
+  background-image: url(../Images/catch.gif);
+  background-size: 85%;
+  background-repeat: no-repeat;
+  margin-top: 45px; }
+
 /*# sourceMappingURL=main.css.map */

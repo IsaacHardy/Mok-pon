@@ -343,6 +343,8 @@ $('.pokeball').on('click', function() {
 	});
 	setTimeout( function() {
 		$(combatText).empty();
+		$('#enemy-toon').removeClass();
+		$('#enemy-toon').addClass('catch');
 		$(combatText).append('You attempt to catch ' + $(enemyName).text() + '!');
 		setTimeout( function() {
 			$(combatText).empty();
@@ -356,11 +358,12 @@ $('.pokeball').on('click', function() {
 				audio3.currentTime = 0;
 				$(combatText).append('You caught ' + $(enemyName).text() + '!')
 				setTimeout( function() {
+					// $('#enemy-toon').removeClass();
 					$(combatText).empty();
 					$(combatText).append('Press the HOME button to start a new game!')
-				})
-			}, 4000);
-		}, 4000);
+				}, 2000)
+			}, 3000);
+		}, 5000);
 	}, 500);
 	
 });
