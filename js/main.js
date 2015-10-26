@@ -278,11 +278,12 @@ $('#new-game').on('click', function() {
 	audio2.currentTime = 0;
 	audio3.currentTime = 0;
 		if ($('.bottom').is(':visible') || $('.main').is(':visible')){
-		$('.bottom').fadeOut(500, function () {
-			$('.battle-option').fadeOut(500);
-			$('.bag').fadeOut(500);
-			$('.main').fadeOut(500, function () {
-				$('.select-page').fadeIn(1000);
+			$('.leaderboard-page').fadeOut(500);
+			$('.bottom').fadeOut(500, function () {
+				$('.battle-option').fadeOut(500);
+				$('.bag').fadeOut(500);
+				$('.main').fadeOut(500, function () {
+					$('.select-page').fadeIn(1000);
 			});
 		});
 	}
@@ -298,6 +299,7 @@ $('#quit-game').on('click', function() {
 	audio2.currentTime = 0;
 	audio3.currentTime = 0;
 	$('.bottom').fadeOut(500, function () {
+		$('.leaderboard-page').fadeOut(500);
 		$('.battle-option').fadeOut(500);
 		$('.main').fadeOut(500, function () {
 			$('.select-page').fadeOut(500, function() {
@@ -336,6 +338,13 @@ $('.back-bag').on('click', function() {
 	});
 });
 
+// back button for leaderboard
+$('.lb-back').on('click', function() {
+	$('.leaderboard-page').fadeOut(500, function() {
+		$('.battle-option').fadeIn(500);
+	});
+});
+
 // Got to catch them all!
 $('.pokeball').on('click', function() {
 	$('.bag').fadeOut(500, function() {
@@ -368,6 +377,12 @@ $('.pokeball').on('click', function() {
 	
 });
 
+// Go to leaderboard page
+$('.leaderboard').on('click', function() {
+	$('.battle-option').fadeOut(500, function() {
+		$('.leaderboard-page').fadeIn(500);
+	})
+});
 
 // Click Move1 Function to hit enemy and display results
 move1.on('click', function() {
