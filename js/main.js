@@ -279,6 +279,8 @@ $('#new-game').on('click', function() {
 	audio3.currentTime = 0;
 		if ($('.bottom').is(':visible') || $('.main').is(':visible')){
 		$('.bottom').fadeOut(500, function () {
+			$('.battle-option').fadeOut(500);
+			$('.bag').fadeOut(500);
 			$('.main').fadeOut(500, function () {
 				$('.select-page').fadeIn(1000);
 			});
@@ -296,6 +298,7 @@ $('#quit-game').on('click', function() {
 	audio2.currentTime = 0;
 	audio3.currentTime = 0;
 	$('.bottom').fadeOut(500, function () {
+		$('.battle-option').fadeOut(500);
 		$('.main').fadeOut(500, function () {
 			$('.select-page').fadeOut(500, function() {
 				$('#launch-top').fadeIn(500);
@@ -307,8 +310,8 @@ $('#quit-game').on('click', function() {
 
 // Click even for battle options movelist
 $('.move-list-btn').on('click', function() {
-	$('.battle-option').fadeOut(500, function() {
-		$('.bottom').fadeIn(500);
+	$('.battle-option').fadeOut(750, function() {
+		$('.bottom').fadeIn(750);
 	});
 });
 
@@ -321,8 +324,8 @@ $('.back-move').on('click', function() {
 
 // Click event for battle options bag
 $('.bag-list-btn').on('click', function() {
-	$('.battle-option').fadeOut(500, function() {
-		$('.bag').fadeIn(500);
+	$('.battle-option').fadeOut(750, function() {
+		$('.bag').fadeIn(750);
 	});
 });
 
@@ -333,9 +336,42 @@ $('.back-bag').on('click', function() {
 	});
 });
 
+// Got to catch them all!
+$('.pokeball').on('click', function() {
+	$('.bag').fadeOut(500, function() {
+		$('.battle-option').fadeIn(500);
+	});
+	setTimeout( function() {
+		$(combatText).empty();
+		$(combatText).append('You attempt to catch ' + $(enemyName).text() + '!');
+		setTimeout( function() {
+			$(combatText).empty();
+			$(combatText).append('..........');
+			setTimeout( function() {
+				audio1.pause();
+				audio2.pause();
+				audio3.play();
+				audio1.currentTime = 0;
+				audio2.currentTime = 0;
+				audio3.currentTime = 0;
+				$(combatText).append('You caught ' + $(enemyName).text() + '!')
+				setTimeout( function() {
+					$(combatText).empty();
+					$(combatText).append('Press the HOME button to start a new game!')
+				})
+			}, 4000);
+		}, 4000);
+	}, 500);
+	
+});
+
 
 // Click Move1 Function to hit enemy and display results
 move1.on('click', function() {
+	$('.bottom').fadeOut(100, function() {
+		$('.battle-option').fadeIn(300);
+	});
+
 
 	// Generate random number to hit enemy health
 	let num = _.random(5, 25);
@@ -358,13 +394,16 @@ move1.on('click', function() {
 
 				  	setTimeout( function() {
 				  		enemyHealth.text('FNT/1000');
-  						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
-  						audio1.pause();
+				  		$(combatText).empty();
+				  		$(combatText).empty();
+				  		audio1.pause();
   						audio2.pause();
 							audio3.play();
 							audio1.currentTime = 0;
 							audio2.currentTime = 0;
 							audio3.currentTime = 0;
+  						$(combatText).append("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+  						
 
 				  	}, 1500);
 					}, 1500);
@@ -408,7 +447,8 @@ move1.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -459,7 +499,8 @@ move1.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -510,7 +551,8 @@ move1.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -563,7 +605,8 @@ move1.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -625,7 +668,9 @@ move1.on('click', function() {
 
 				  	setTimeout( function() {
 				  		enemyHealth.text('FNT/1000');
-  						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+				  		$(combatText).empty();
+				  		$(combatText).empty();
+  						$(combatText).append("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
   						audio1.pause();
   						audio2.pause();
 							audio3.play();
@@ -674,7 +719,9 @@ move1.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -726,7 +773,8 @@ move1.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -778,7 +826,8 @@ move1.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -830,7 +879,8 @@ move1.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -884,6 +934,9 @@ move1.on('click', function() {
 
 // Click Move2 Function to hit enemy and display results
 move2.on('click', function() {
+	$('.bottom').fadeOut(100, function() {
+		$('.battle-option').fadeIn(300);
+	});
 
 	// Generate random number to hit enemy health
 	let num = _.random(20, 100);
@@ -904,7 +957,8 @@ move2.on('click', function() {
 
 				  	setTimeout( function() {
 				  		enemyHealth.text('FNT/1000');
-  						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+				  		$(combatText).empty();
+  						$(combatText).append("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
   						audio1.pause();
   						audio2.pause();
 							audio3.play();
@@ -952,7 +1006,8 @@ move2.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -1003,7 +1058,8 @@ move2.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -1054,7 +1110,8 @@ move2.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -1107,7 +1164,8 @@ move2.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -1168,7 +1226,8 @@ move2.on('click', function() {
 
 				  	setTimeout( function() {
 				  		enemyHealth.text('FNT/1000');
-  						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+				  		$(combatText).empty();
+  						$(combatText).append("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
   						audio1.pause();
   						audio2.pause();
 							audio3.play();
@@ -1217,7 +1276,8 @@ move2.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -1269,7 +1329,8 @@ move2.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -1321,7 +1382,8 @@ move2.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -1373,7 +1435,8 @@ move2.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -1427,6 +1490,9 @@ move2.on('click', function() {
 
 // Click Move3 Function to hit enemy and display results
 move3.on('click', function() {
+	$('.bottom').fadeOut(100, function() {
+		$('.battle-option').fadeIn(300);
+	});
 
 	// Generate random number to hit enemy health
 	let num = _.random(50, 200);
@@ -1447,7 +1513,8 @@ move3.on('click', function() {
 
 				  	setTimeout( function() {
 				  		enemyHealth.text('FNT/1000');
-  						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+				  		$(combatText).empty();
+  						$(combatText).append("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
   						audio1.pause();
   						audio2.pause();
 							audio3.play();
@@ -1495,7 +1562,8 @@ move3.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -1546,7 +1614,8 @@ move3.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -1597,7 +1666,8 @@ move3.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -1650,7 +1720,8 @@ move3.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -1711,7 +1782,8 @@ move3.on('click', function() {
 
 				  	setTimeout( function() {
 				  		enemyHealth.text('FNT/1000');
-  						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+				  		$(combatText).empty();
+  						$(combatText).append("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
   						audio1.pause();
   						audio2.pause();
 							audio3.play();
@@ -1760,7 +1832,8 @@ move3.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -1812,7 +1885,8 @@ move3.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -1864,7 +1938,8 @@ move3.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -1916,7 +1991,8 @@ move3.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -1968,6 +2044,9 @@ move3.on('click', function() {
 
 // Click Move4 Function to hit enemy and display results
 move4.on('click', function() {
+	$('.bottom').fadeOut(100, function() {
+		$('.battle-option').fadeIn(300);
+	});
 
 	// Generate random number to hit enemy health
 	let num = _.random(100, 500);
@@ -1988,7 +2067,8 @@ move4.on('click', function() {
 
 				  	setTimeout( function() {
 				  		enemyHealth.text('FNT/1000');
-  						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+				  		$(combatText).empty();
+  						$(combatText).append("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
   						audio1.pause();
   						audio2.pause();
 							audio3.play();
@@ -2038,7 +2118,8 @@ move4.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -2089,7 +2170,8 @@ move4.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -2140,7 +2222,8 @@ move4.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -2193,7 +2276,8 @@ move4.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -2254,7 +2338,8 @@ move4.on('click', function() {
 
 				  	setTimeout( function() {
 				  		enemyHealth.text('FNT/1000');
-  						alert("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
+				  		$(combatText).empty();
+  						$(combatText).append("Enemy Trainer's pokemon fainted... You won! Press the 'Home' button to start a new game!");
   						audio1.pause();
   						audio2.pause();
 							audio3.play();
@@ -2303,7 +2388,8 @@ move4.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -2355,7 +2441,8 @@ move4.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -2407,7 +2494,8 @@ move4.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
@@ -2459,7 +2547,8 @@ move4.on('click', function() {
 
 											  	setTimeout( function() {
 											  		enemyHealth.text('FNT/1000');
-							  						alert($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
+											  		$(combatText).empty();
+							  						$(combatText).append($(playerName).text() + " has fainted. You are out of Pokemon! Press the 'home' button to start a new game!");
 
 											  	}, 1500);
 												}, 1500);
