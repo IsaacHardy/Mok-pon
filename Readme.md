@@ -1,3 +1,15 @@
-## Welcome to My Repo
+## Mokèpon
 
-> I am your Readme.md file, you should probably update me.
+This is a Pokèmon inspired web game that was built primarily with Backbonejs.
+
+#### Tech Usage
+
+* Backbonejs
+* SASS
+* Javascript
+* CSS
+* HTML
+* JSON
+* GULP
+* Nodejs
+
