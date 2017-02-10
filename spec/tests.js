@@ -135,5 +135,4 @@ var _enemy2 = _interopRequireDefault(_enemy);
 
 },{"./enemy":1,"./player":3}]},{},[4])
 
-
 //# sourceMappingURL=tests.js.map
