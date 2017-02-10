@@ -2393,34 +2393,33 @@ div {
   margin-top: 22px; }
 
 #new-game {
-  height: 28px;
-  margin-top: -117px;
-  margin-left: 622px;
-  position: absolute;
-  width: 180px;
+  position: fixed;
+  width: 8.4vw;
+  left: 32.5vw;
+  top: 66vh;
+  height: 2.7vh;
   background-color: transparent;
-  border: none;
+  border: 1px solid white;
   outline: none; }
 
 #quit-game {
-  position: absolute;
-  margin-top: -148px;
-  margin-left: 1031px;
-  width: 35px;
-  height: 30px;
-  border-radius: 50%;
+  position: fixed;
+  width: 9.2vw;
+  left: 41vw;
+  top: 66vh;
+  height: 2.7vh;
   background-color: transparent;
-  border: none;
+  border: 1px solid white;
   outline: none; }
 
 .begin {
-  position: absolute;
-  top: 805px;
-  right: 455px;
-  width: 155px;
-  height: 26px;
-  border: none;
-  background: transparent;
+  position: fixed;
+  width: 8.2vw;
+  left: 50.3vw;
+  top: 66vh;
+  height: 2.7vh;
+  background-color: transparent;
+  border: 1px solid white;
   outline: none; }
 
 .select-page {
