@@ -2345,13 +2345,13 @@ div {
   font-size: 16px; }
 
 .container {
-  height: 71vh;
-  overflow: hidden;
-  margin: auto 9%; }
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden; }
 
 .ds {
-  width: 75vw;
-  height: 75vh; }
+  width: 100vw;
+  height: 100vh; }
 
 .screen {
   position: absolute;
@@ -2366,22 +2366,22 @@ div {
   background-image: url(../Images/start.gif);
   background-size: 100%;
   background-repeat: no-repeat;
-  width: 34.8vw;
-  height: 24.2vh;
+  width: 47vw;
+  height: 33.8vh;
   border-radius: 3px;
-  top: 9.8vh;
-  left: 29vw; }
+  top: 12.5vh;
+  left: 26.4vw; }
 
 #launch-bot {
   position: fixed;
   background-color: black;
-  width: 28.5vw;
-  height: 25vh;
+  width: 37.5vw;
+  height: 33.5vh;
   border-radius: 3px;
-  top: 41vh;
-  left: 32vw;
+  top: 55vh;
+  left: 31vw;
   color: white;
-  font-size: 8px; }
+  font-size: 1.7vh; }
   #launch-bot p {
     text-align: center;
     padding: 25% 2% 0 2%; }
@@ -2394,54 +2394,53 @@ div {
 
 #new-game {
   position: fixed;
-  width: 8.4vw;
-  left: 32.5vw;
-  top: 66vh;
-  height: 2.7vh;
+  width: 11vw;
+  left: 31.5vw;
+  top: 88.8vh;
+  height: 3vh;
   background-color: transparent;
   border: 1px solid white;
   outline: none; }
 
 #quit-game {
   position: fixed;
-  width: 9.2vw;
-  left: 41vw;
-  top: 66vh;
-  height: 2.7vh;
+  width: 12.4vw;
+  left: 42.7vw;
+  top: 88.8vh;
+  height: 3vh;
   background-color: transparent;
   border: 1px solid white;
   outline: none; }
 
 .begin {
   position: fixed;
-  width: 8.2vw;
-  left: 50.3vw;
-  top: 66vh;
-  height: 2.7vh;
+  width: 11vw;
+  left: 55.2vw;
+  top: 88.8vh;
+  height: 3vh;
   background-color: transparent;
   border: 1px solid white;
   outline: none; }
 
 .select-page {
-  width: 667px;
-  margin-top: 66px;
-  margin-left: 379px;
-  height: 318px;
+  position: fixed;
+  width: 47vw;
+  height: 33.8vh;
+  border-radius: 3px;
+  top: 12.5vh;
+  left: 26.4vw;
   background-image: url(../Images/selectback.jpg);
   background-size: 100%;
   background-repeat: no-repeat;
   display: none; }
   .select-page h2 {
-    margin-bottom: 35px;
-    padding: 20px;
+    margin-top: 1vh;
     color: white;
     text-align: center;
-    font-weight: bold;
-    font-style: italic;
-    text-shadow: 3px 2px 12px whitesmoke; }
+    font-weight: bold; }
 
 .select-page > label {
-  position: absolute;
+  position: fixed;
   margin-left: -154px;
   margin-top: -10px; }
 
@@ -2450,12 +2449,13 @@ div {
   font-size: 20px;
   border: 2px solid;
   border-radius: 15px;
-  padding: 80px;
+  padding: 6vw 1vw;
   background-color: lightgrey;
   text-shadow: 0 0 2px #1A7296;
   background-image: url(../Images/charizardgif.gif);
   background-size: 100%;
   background-repeat: no-repeat;
+  background-position: center;
   vertical-align: top;
   cursor: pointer; }
   #chard:hover {
@@ -2469,12 +2469,13 @@ div {
   font-size: 20px;
   border: 2px solid;
   border-radius: 15px;
-  padding: 80px;
+  padding: 6vw 1vw;
   background-color: lightgrey;
   text-shadow: 0 0 2px #FF7A70;
   background-image: url(../Images/venosaurgif.gif);
   background-size: 100%;
   background-repeat: no-repeat;
+  background-position: center;
   vertical-align: top;
   cursor: pointer; }
   #saur:hover {
@@ -2488,12 +2489,13 @@ div {
   font-size: 20px;
   border: 2px solid;
   border-radius: 15px;
-  padding: 80px;
+  padding: 6vw 1vw;
   background-color: lightgrey;
   text-shadow: 0 0 1px #5B3A15;
   background-image: url(../Images/blastiosegif.gif);
   background-size: 100%;
   background-repeat: no-repeat;
+  background-position: center;
   vertical-align: top;
   cursor: pointer; }
   #blast:hover {
@@ -2503,10 +2505,10 @@ div {
   background-color: #5B3A15; }
 
 .label-holder {
-  margin-top: 100px;
-  margin-left: 70px; }
+  margin-top: 12vh;
+  text-align: center; }
   .label-holder p {
-    position: absolute; }
+    position: fixed; }
 
 #char-pon {
   width: 0;
@@ -2521,50 +2523,53 @@ div {
   visibility: hidden; }
 
 #chard-text {
-  top: 290px;
-  left: 484px;
+  top: 29vh;
+  left: 36.4vw;
   color: #F18412;
-  font-size: 20px;
+  font-size: 2vh;
   font-weight: bold; }
 
 #veno-text {
-  top: 290px;
-  left: 655px;
+  top: 29vh;
+  left: 46.3vw;
   color: #0BB69C;
-  font-size: 20px;
+  font-size: 2vh;
   font-weight: bold; }
 
 #blast-text {
-  top: 290px;
-  right: 136px;
+  top: 29vh;
+  left: 56.2vw;
   color: #588AD0;
-  font-size: 20px;
+  font-size: 2vh;
   font-weight: bold; }
 
 .select-bot {
+  position: fixed;
+  background-color: black;
+  width: 37.5vw;
+  height: 33.5vh;
+  border-radius: 3px;
+  text-align: center;
+  top: 54.9vh;
+  left: 31.2vw;
+  color: white;
+  font-size: 8px;
   background-image: url(../Images/handpoke.jpg);
-  background-size: 100%;
-  background-repeat: no-repeat;
-  margin-top: 76px;
-  margin-left: 70px;
-  position: absolute;
-  width: 526px;
-  height: 294px; }
+  background-size: 125%;
+  background-position: center;
+  background-repeat: no-repeat; }
 
 .start-game {
-  display: block;
-  position: absolute;
-  bottom: 10px;
-  left: 126px;
-  width: 250px;
-  height: 250px;
+  margin-top: 7vh;
+  height: 18vh;
   border: 2px solid;
   background: transparent;
   border-radius: 50%;
   outline: none; }
   .start-game p {
-    margin-bottom: 155px;
-    font-size: 40px;
+    margin-top: -4vh;
+    font-size: 4vh;
+    text-transform: uppercase;
     color: #BEBEBE; }
   .start-game:hover {
     box-shadow: 0px 0px 20px black; }
@@ -2580,30 +2585,35 @@ div {
 
 .bottom {
   display: none;
+  position: absolute;
   text-align: center;
-  margin-top: 102px;
-  margin-left: 448px;
-  width: 526px;
+  width: 37.5vw;
+  height: 33.5vh;
+  top: 54.9vh;
+  left: 31.2vw;
   border: none;
   background-image: url(../Images/handpoke.jpg);
-  background-size: 100%;
+  background-size: 125%;
+  background-position: center;
   background-repeat: no-repeat; }
   .bottom div {
     border: none; }
+  .bottom li {
+    margin-top: 0; }
 
 #gameboard {
   position: relative;
-  margin-top: -83px;
-  margin-left: 377px;
-  width: 670px; }
+  width: 47vw;
+  height: 33.8vh;
+  top: 12.5vh;
+  left: 26.4vw; }
 
 .sprites-area {
   background-image: url(../Images/pokemon_x_y_battle_scene_by_jenske05-d5ynr9c.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  width: 100%;
-  height: 274px;
-  margin-top: 147px; }
+  width: 47vw;
+  height: 34vh; }
 
 #enemy-bar, #player-bar {
   width: 20%;
@@ -2721,55 +2731,51 @@ div {
   border: 3px solid black;
   background-color: transparent;
   display: inline-block;
-  height: 100px;
-  width: 125px;
+  height: 13vh;
+  width: 12vw;
   border-radius: 50%;
-  margin-right: 24px;
-  margin-top: 13px;
-  padding-right: 0;
   outline: none;
-  font-size: 16px; }
+  font-size: 3vh; }
   .skill-btn:hover {
     box-shadow: 0px 0px 20px black; }
 
-.skill-list-top {
-  margin-left: 10px; }
-
 .skill-list-bot {
-  margin-left: 10px; }
+  margin-top: 2vh; }
 
 .battle-option {
   display: inline-block;
   position: absolute;
-  left: 448px;
-  bottom: -398px;
-  height: 294px;
-  width: 660px;
+  width: 37.5vw;
+  height: 33.5vh;
+  top: 54.9vh;
+  left: 31.2vw;
   background-image: url(../Images/handpoke.jpg);
-  background-size: 80%;
+  background-size: 125%;
+  background-position: center;
   background-repeat: no-repeat;
   display: none; }
 
 .bag {
   display: inline-block;
   position: absolute;
-  left: 448px;
-  bottom: -398px;
-  height: 294px;
-  width: 660px;
+  width: 37.5vw;
+  height: 33.5vh;
+  top: 54.9vh;
+  left: 31.2vw;
   background-image: url(../Images/handpoke.jpg);
-  background-size: 80%;
+  background-size: 125%;
+  background-position: center;
   background-repeat: no-repeat;
   display: none; }
 
 .the-bag {
-  width: 370px;
-  height: 275px;
+  width: 30vw;
+  height: 30vh;
   background: black;
   opacity: 0.3;
   border-radius: 15px;
-  margin-left: 80px;
-  margin-top: 8px; }
+  margin-left: 6vw;
+  margin-top: 2vh; }
   .the-bag p {
     font-size: 12px;
     color: white;
@@ -2789,15 +2795,15 @@ div {
     opacity: 1; }
 
 .option-div {
-  margin-top: 36px;
-  margin-left: 51px; }
+  text-align: center;
+  margin-top: 5vh; }
 
 .back-bag {
   position: absolute;
-  bottom: 106px;
-  left: -12px;
-  height: 60px;
-  width: 60px;
+  bottom: 11.5vh;
+  left: -1.2vw;
+  height: 8vh;
+  width: 6vw;
   border: 3px solid black;
   border-radius: 0 50% 50% 0;
   background-color: white;
@@ -2805,10 +2811,10 @@ div {
 
 .back-move {
   position: absolute;
-  bottom: 108px;
-  left: 436px;
-  height: 60px;
-  width: 60px;
+  bottom: 11.5vh;
+  left: -1.2vw;
+  height: 8vh;
+  width: 6vw;
   border: 3px solid black;
   border-radius: 0 50% 50% 0;
   background-color: white;
@@ -2818,13 +2824,12 @@ div {
   border: 3px solid black;
   background-color: #B5B5B5;
   display: inline-block;
-  height: 200px;
-  width: 200px;
+  height: 20vh;
+  width: 15vw;
   border-radius: 50% 0 0 50%;
-  margin-right: -4px;
   padding-right: 0;
   outline: none;
-  font-size: 28px; }
+  font-size: 4vh; }
   .move-list-btn:hover {
     box-shadow: 0px 0px 20px black; }
 
@@ -2832,13 +2837,12 @@ div {
   border: 3px solid black;
   background-color: #900F17;
   display: inline-block;
-  height: 200px;
-  width: 200px;
+  height: 20vh;
+  width: 15vw;
   border-radius: 0 50% 50% 0;
-  margin-left: 0;
   padding-left: 0;
   outline: none;
-  font-size: 28px; }
+  font-size: 4vh; }
   .bag-list-btn:hover {
     box-shadow: 0px 0px 20px black; }
 
@@ -2850,10 +2854,10 @@ div {
 
 .leaderboard {
   position: absolute;
-  bottom: -13px;
-  left: 136px;
-  height: 35px;
-  width: 230px;
+  bottom: -2vh;
+  left: 7.5vw;
+  height: 5vh;
+  width: 20vw;
   border: 3px solid black;
   background-color: white;
   outline: none;
@@ -2861,14 +2865,15 @@ div {
 
 .leaderboard-page {
   display: block;
-  height: 290px;
-  width: 527px;
+  width: 37.5vw;
+  height: 33.5vh;
+  top: 54.9vh;
+  left: 31.2vw;
   display: none;
   position: absolute;
-  bottom: -396px;
-  left: 448px;
   background-image: url(../Images/handpoke.jpg);
-  background-size: 100%;
+  background-size: 125%;
+  background-position: center;
   background-repeat: no-repeat; }
   .leaderboard-page ol {
     width: 300px;
@@ -2877,23 +2882,23 @@ div {
 
 .lb-back {
   position: absolute;
-  bottom: 103px;
-  left: -12px;
-  height: 60px;
-  width: 60px;
+  bottom: 11.5vh;
+  left: -1.2vw;
+  height: 8vh;
+  width: 6vw;
   border: 3px solid black;
   border-radius: 0 50% 50% 0;
   background-color: white;
   outline: none; }
 
 .lb-page-board {
-  width: 370px;
-  height: 275px;
+  width: 30vw;
+  height: 30vh;
   background: black;
   opacity: 0.3;
   border-radius: 15px;
-  margin-left: 80px;
-  margin-top: -18px; }
+  margin-left: 6vw;
+  margin-top: 2vh; }
   .lb-page-board h2 {
     padding-top: 28px;
     padding-left: 25px;
